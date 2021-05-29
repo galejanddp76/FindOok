@@ -25,7 +25,7 @@ window.onload = function() {
 leerPublicacion();
 
     async function leerPublicacion() {
-        const response = await fetch('http://localhost:8080/publicaciones');
+        const response = await fetch('https://findookapp.herokuapp.com/publicaciones');
         const publicaciones = await response.json();
         mostrarPublicaciones(publicaciones);
     }
