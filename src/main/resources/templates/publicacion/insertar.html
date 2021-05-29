@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html xmlns:th="thymeleaf.org">
+
+<head>
+    <meta charset="utf-8">
+    <title>Formulario publicacion</title>
+    <link rel="stylesheet" th:href="@{/estilos.css}">
+</head>
+
+<body>
+    <header class="header">
+        <nav>
+            <div class="logo">
+                <img th:src="@{/images/libro-abierto.png}" alt="libro">
+                <h3>FINDOOK</h3>
+            </div>
+            <ul class="navegacion">
+                <li><a th:href="@{/registrarse}">Registrarse</a></li>
+                <li><a th:href="@{/login}">Iniciar Sesion</a></li>
+            </ul>
+        </nav>
+    </header>
+    <div class="formulario">
+    
+    <form th:action="@{/persistirpublicacion}" method="post" th:object="${publicaciones}" enctype="multipart/form-data">
+        <p>Usuario: <input type="text" name="usuario" id="usuario" th:value="${usuario}" th:field="*{usuario}"/>
+        <p>Titulo: <input type="text" name="titulo" id="titulo" />
+        <p>Descripcion <input type="text" name="descripcion" id="descripcion" />
+        <p>Imagen: <input type="file" name="file" id="imagenpublicacion" />
+        <p>Fecha <input type="date" name="fechacreacion" id="fechacreacion" />
+        <p>Precio <input type="text" name="precio" id="precio" />
+        <input type="submit" name="insertar" />
+        <a th:href="@{/index}">Volver al indice</a>
+    </form>
+    </div>
+</body>
+
+</html>

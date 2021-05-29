@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Registro</title>
+</head>
+<body>
+	<h2>Registro:</h2>
+	<form th:action="@{/persistirusuario}" method="post">
+		<div><label> Nombre de usuario: <input type="text" name="username"/></label></div>
+		<br>
+		<div><label> Password: <input type="text" name="password"/></label></div>
+		<br>
+		<div><input type="submit" value="registro"/></div>
+	</form>
+	<a th:href="@{/index}">Volver al indice</a>
+</body>
+</html>

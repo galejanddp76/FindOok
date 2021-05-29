@@ -1,0 +1,216 @@
+body {
+    margin: 0;
+    padding: 0;
+    font-size: 20px;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    overflow-x: hidden;
+}
+
+strong {
+    color: orange;
+}
+
+.header {
+    width: 100%;
+}
+
+nav div {
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: flex-end;
+    align-items: center;
+    color: white;
+    position: absolute;
+}
+
+.logo>img {
+    width: 60px;
+    padding: 5px;
+}
+
+.logo{
+	cursor: default;
+	margin: 3px;
+}
+
+.navegacion {
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: flex-end;
+    align-items: center;
+    list-style: none;
+    margin: 0;
+    color: white;
+    background: black;
+}
+
+.navegacion a {
+    text-decoration: none;
+    display: block;
+    padding: 1.3em;
+    color: white;
+    background-color: transparent;
+    transition: background-color .3s ease-out;
+}
+
+.navegacion img {
+    height: 1.3em;
+    position: relative;
+}
+
+.carro {
+    cursor: pointer;
+}
+
+.navegacion a:hover {
+    background: orange;
+}
+
+.contenedor {
+    font-size: .8em;
+    width: 100%;
+    margin: 0 auto;
+    position: relative;
+}
+
+.publicaciones {
+    width: 95%;
+    margin: 0 auto;
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: center;
+    align-items: stretch;
+}
+
+article {
+    width: 600px;
+    height: 300px;
+    margin: 15px 20px;
+    padding: 10px;
+    border: 1px solid orange;
+    border-radius: 20px;
+    background-color: #d9ebf3;
+    box-shadow: 17px 19px 13px -5px rgba(0, 0, 0, 0.41);
+}
+
+article>img {
+    width: 25%;
+    height: 75%;
+    display: block;
+    box-sizing: border-box;
+    float: left;
+    margin: 5px;
+}
+
+.info{ 
+    width: 70%;
+    height:65%;
+    box-sizing: border-box;
+    float: left;
+    padding-left: 10px;
+    word-wrap: word-break;
+    text-align: left;
+    text-overflow: ellipsis;
+}
+
+.info span{
+	display:block;
+}
+
+.titulo span {
+    display: block;
+    height: 40px;
+    line-height: 40px;
+    font-size: 1em;
+    color: orange;
+    margin: 8px 0 5px 0;
+    border-bottom: .10px solid blue;
+}
+
+
+.boton {
+	float: right;
+    font-size: .8em;
+    padding: 1em;
+    color: white;
+    background-color: orange;
+    border: 1px solid black;
+    cursor: pointer;
+    transition: background-color .5s ease-out;
+}
+
+.boton:hover,
+.eliminar:hover,
+.comprar:hover {
+    background-color: #ff4800;
+}
+
+.info span:nth-child(1)::first-letter {
+    text-transform: uppercase;
+}
+
+.carrito {
+    display: block;
+    box-sizing: border-box;
+    width: 400px;
+    max-height: 700px;
+    color: black;
+    border: 1px solid orange;
+    position: absolute;
+    top: 0;
+    background-color: #d9ebf3;
+    transition: right .3s ease-in-out;
+    overflow: auto;
+}
+
+.carrito header {
+    height: 40px;
+    line-height: 40px;
+    text-align: center;
+    color: white;
+    padding-left: 8px;
+    background-color: orange;
+}
+
+.carrito>div {
+    width: 80%;
+    margin: 10px auto;
+    border: 1px solid orange;
+    padding: 10px;
+}
+
+.elimina-compra {
+    display: block;
+    font-size: .8em;
+    text-align: center;
+    background-color: white;
+    line-height: 25px;
+    margin: auto;
+}
+
+.eliminar {
+    display: block;
+    float: right;
+    font-size: 20px;
+    color: white;
+    background-color: orange;
+    border: 1px solid black;
+    padding: 10px;
+    cursor: pointer;
+    transition: background-color .5s ease-out;
+}
+
+.comprar {
+    display: block;
+    padding: 10px;
+    color: white;
+    background-color: orange;
+    border: 1px solid black;
+    cursor: pointer;
+    transition: background-color .5s ease-out;
+}
+
+.detallesCompra {
+    font-size: 20px;
+    text-align: left;
+}
