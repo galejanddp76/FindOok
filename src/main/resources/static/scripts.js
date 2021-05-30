@@ -39,7 +39,7 @@ leerPublicacion();
             <div class="titulo">
                 <span><strong>${publicacion.titulo}</strong></span>
             </div>
-            <img src="/uploads/${publicacion.imagenpublicacion}" alt="${publicacion.titulo}">
+            <img src="${publicacion.imagenpublicacion}" alt="${publicacion.titulo}">
             <div class="info">
                 <span><strong>Descripcion:</strong> ${publicacion.descripcion}</span>
                 <span><strong>Usuario:</strong> ${publicacion.usuario.username}</span>

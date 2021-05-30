@@ -1,6 +1,6 @@
 package com.dawes.modelo;
 
-import java.io.Serializable;
+
 
 import java.time.LocalDate;
 
@@ -22,7 +22,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @Entity
 @Table(name = "publicaciones")
-public class PublicacionVO implements Serializable{
+public class PublicacionVO {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -36,7 +36,5 @@ public class PublicacionVO implements Serializable{
 	@ManyToOne
 	@JoinColumn(name="idusuario")
 	private UsuarioVO usuario;
-
-	private static final long serialVersionUID = 1L;
 
 }

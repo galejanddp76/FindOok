@@ -1,8 +1,7 @@
 package com.dawes.controller;
 
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
+import java.io.IOException;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -13,12 +12,15 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.dawes.modelo.PublicacionVO;
+import com.dawes.servicio.ServicioCloudinary;
 import com.dawes.servicio.ServicioPublicacion;
 
 @Controller
 public class Controlador {
 	@Autowired
 	ServicioPublicacion sp;
+	@Autowired
+	ServicioCloudinary sc;
 	
 	@GetMapping("/insertar")
 	public String insertar(Model modelo) {
@@ -27,22 +29,10 @@ public class Controlador {
 	}
 	
 	 @PostMapping("/persistirpublicacion")
-	 public String insertar(@RequestParam(name = "file", required = false) MultipartFile file, PublicacionVO publicacion) {
-		 
-		 if(!file.isEmpty()) {
-			 String rutaAbsoluta = "C://Temp//uploads";
-			 
-			 try {
-				byte[] bytes = file.getBytes();
-				Path rutaCompleta = Paths.get(rutaAbsoluta+"//"+file.getOriginalFilename());
-				Files.write(rutaCompleta, bytes);
-				publicacion.setImagenpublicacion(file.getOriginalFilename());
-			 }catch(Exception e) {
-				 e.printStackTrace();
-			 }
-
-			 sp.save(publicacion);
-		 }
+	 public String insertar(@RequestParam(name = "file", required = false) MultipartFile file, PublicacionVO publicacion) throws IOException {
+		 Map<?, ?> result = sc.upload(file);
+		 publicacion.setImagenpublicacion((String)result.get("url"));
+		 sp.save(publicacion);
 		 return "index";
 		 
 	 }
