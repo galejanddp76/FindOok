@@ -14,14 +14,6 @@ strong {
     width: 100%;
 }
 
-nav div {
-    display: flex;
-    flex-flow: row wrap;
-    justify-content: flex-end;
-    align-items: center;
-    color: white;
-    position: absolute;
-}
 
 .logo>img {
     width: 60px;
@@ -29,8 +21,14 @@ nav div {
 }
 
 .logo{
+	display: flex;
+    flex-flow: row wrap;
+    justify-content: flex-end;
+    align-items: center;
+    color: white;
+    position: absolute;
 	cursor: default;
-	margin: 3px;
+	margin: 7px;
 }
 
 .navegacion {
@@ -45,24 +43,34 @@ nav div {
 }
 
 .navegacion a {
+	display: block;
     text-decoration: none;
-    display: block;
-    padding: 1.3em;
+    color: white;
+}
+
+.navegacion li {
+    padding: 30px;
     color: white;
     background-color: transparent;
     transition: background-color .3s ease-out;
 }
 
-.navegacion img {
-    height: 1.3em;
-    position: relative;
+.usuario>img {
+	width: 30px;
+	margin-left: 10px;
+    border-radius: 30px;
 }
 
-.carro {
+.usuario {
+	display: flex;
+    flex-flow: row wrap;
+    justify-content: flex-start;
+    align-items: center;
+    color: white;
     cursor: pointer;
 }
 
-.navegacion a:hover {
+.navegacion li:hover {
     background: orange;
 }
 
