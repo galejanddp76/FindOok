@@ -30,7 +30,9 @@ public class Controlador {
 	
 	 @PostMapping("/persistirpublicacion")
 	 public String insertar(@RequestParam(name = "file", required = false) MultipartFile file, PublicacionVO publicacion) throws IOException {
+		 //Llama servicio cloudinary para subir la imagen
 		 Map<?, ?> result = sc.upload(file);
+		 //Establece url de la imagen de cloudinary para mostrarla
 		 publicacion.setImagenpublicacion((String)result.get("url"));
 		 sp.save(publicacion);
 		 return "index";

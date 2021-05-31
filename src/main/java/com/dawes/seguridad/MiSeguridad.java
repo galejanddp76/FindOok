@@ -29,8 +29,6 @@ public class MiSeguridad extends WebSecurityConfigurerAdapter{
 		return passwordEncoder().encode(password);
 	}
 	
-	
-	// programa la autenticacion
 	@Override
 	protected void configure(AuthenticationManagerBuilder auth) throws Exception {
 		auth.userDetailsService(su);
@@ -41,9 +39,6 @@ public class MiSeguridad extends WebSecurityConfigurerAdapter{
 		http.authorizeRequests().antMatchers(HttpMethod.GET, "/insertar", "/modificar","/eliminar").hasAnyRole("USER","ADMIN");
         http.authorizeRequests().antMatchers(HttpMethod.GET,  "/panel").hasRole("ADMIN");
         http.authorizeRequests().antMatchers(HttpMethod.POST,"/proveedores").hasRole("ADMIN");
-        //seguridad de ProveedoresWS
-		http.authorizeRequests().antMatchers(HttpMethod.GET,"/proveedor").hasAnyRole("AUTENTICADO","ADMIN");
-        http.authorizeRequests().antMatchers(HttpMethod.POST,"/proveedor").hasRole("ADMIN");
         http.authorizeRequests().antMatchers(HttpMethod.DELETE,"/proveedor/*").hasRole("ADMIN");
 		http.httpBasic();
 		http.formLogin().loginPage("/login");
