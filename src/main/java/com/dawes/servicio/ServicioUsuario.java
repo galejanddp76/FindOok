@@ -34,5 +34,7 @@ public interface ServicioUsuario {
 	void deleteAll(Iterable<? extends UsuarioVO> entities);
 
 	void deleteAll();
+	
+	UsuarioVO createUser(UsuarioVO usuario) throws Exception;
 
 }

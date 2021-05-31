@@ -1,9 +1,11 @@
 package com.dawes.controller;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -50,13 +52,20 @@ public class ControladorPrincipal {
 	}
 	
 	@PostMapping("/persistirusuario")
-	public String persistir(@ModelAttribute UsuarioVO usuario,Model modelo) {
-		BCryptPasswordEncoder encriptador=new BCryptPasswordEncoder();
-		String contraseña = encriptador.encode(usuario.getPassword());
-		usuario.setPassword(contraseña);
-		su.save(usuario);
-		sur.save(new UsuarioRolVO(0,sr.findById(2).get(),usuario));
-		return "index";
+	public String persistir(@Valid @ModelAttribute("usuario") UsuarioVO usuario, BindingResult result, Model model) {
+		if(result.hasErrors()) {
+			return "registro";
+		}else {
+			try {	
+				su.createUser(usuario);
+				sur.save(new UsuarioRolVO(0,sr.findById(2).get(),usuario));
+				return "index";
+			} catch (Exception e) {
+				model.addAttribute("Error",e.getMessage());
+				return "registro";
+			}
+		}
+
 	}
 
 }

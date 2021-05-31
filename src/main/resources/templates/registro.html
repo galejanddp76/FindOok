@@ -1,15 +1,25 @@
 <!DOCTYPE html>
-<html>
+<html xmlns:th="thymeleaf.org">
 <head>
 <meta charset="utf-8">
 <title>Registro</title>
 </head>
 <body>
 	<h2>Registro:</h2>
-	<form th:action="@{/persistirusuario}" method="post">
-		<div><label> Nombre de usuario: <input type="text" name="username"/></label></div>
+	<form th:action="@{/persistirusuario}" th:object="${usuario}" method="post">
+		<div><label> Nombre de usuario: <input type="text" name="username" id="username" placeholder="Nombre de usuario" th:fields="*{username}"></label></div>
+		<div class="alerta" th:if="${#fields.hasErrors('username')}" th:errors="*{username}">Name Error</div>
 		<br>
-		<div><label> Password: <input type="text" name="password"/></label></div>
+		<div><label> Correo: <input type="text" name="correo" id="correo" placeholder="Email" th:fields="*{correo}"/></label></div>
+		<div class="alerta" th:if="${#fields.hasErrors('correo')}" th:errors="*{correo}">Name Error</div>
+		<br>
+		<div><label> Password: <input type="password" name="password" id="password" placeholder="Contraseña" th:fields="*{password}"/></label></div>
+		<div class="alerta" th:if="${#fields.hasErrors('password')}" th:errors="*{password}">Name Error</div>
+		<br>
+		<div><label> Confirmar Password: <input type="password" name="confirmarpassword" id="confirmarpassword" placeholder="Confirmar contraseña" th:fields="*{confirmarpassword}"/></label></div>
+		<div class="alerta" th:if="${#fields.hasErrors('confirmarpassword')}" th:errors="*{confirmarpassword}">Name Error</div>
+		<br>
+		<div class="alerta" th:if="${Error}" th:text="${Error}">Name Error</div>
 		<br>
 		<div><input type="submit" value="registro"/></div>
 	</form>

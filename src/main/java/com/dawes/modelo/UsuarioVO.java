@@ -13,6 +13,10 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.persistence.Transient;
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Size;
 
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.security.core.GrantedAuthority;
@@ -34,12 +38,27 @@ public class UsuarioVO implements UserDetails {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int idusuario;
+	
+	@NotBlank
+	@Size(min = 5, max = 10)
 	@Column(unique = true)
 	private String username;
+	
+	@NotBlank
+	@Email(message = "Debe tener una sintaxis de email")
+	@Column(unique = true)
 	private String correo;
+	
 	@DateTimeFormat(pattern = "yyy-MM-dd")
 	private LocalDate fecharegistro;
+	
+	@NotBlank
 	private String password;
+	
+	@Transient
+	@NotBlank
+	private String confirmarpassword;
+	
 	@OneToMany(mappedBy = "usuario", fetch = FetchType.EAGER)
 	@JsonIgnore
 	List<UsuarioRolVO> roles;
@@ -49,6 +68,7 @@ public class UsuarioVO implements UserDetails {
 		privilegios.add(new SimpleGrantedAuthority(u.getRol().getNombrerol()));
 		return privilegios;
 	}
+	
 	public boolean isAccountNonExpired() {
 		return true;
 	}

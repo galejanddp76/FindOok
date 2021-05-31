@@ -1,11 +1,13 @@
 package com.dawes.servicioImpl;
 
+import java.time.LocalDate;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import com.dawes.modelo.UsuarioVO;
@@ -88,5 +90,45 @@ public class ServicioUsuarioImpl implements UserDetailsService, ServicioUsuario 
 	@Override
 	public void deleteAll() {
 		ur.deleteAll();
+	}
+	
+	public Optional<UsuarioVO> findByCorreo(String email) {
+		return ur.findByCorreo(email);
+	}
+
+	private boolean checkUsernameAvailable(UsuarioVO usuario) throws Exception {
+		Optional<UsuarioVO> userFound = ur.findByUsername(usuario.getUsername());
+		if (userFound.isPresent()) {
+			throw new Exception("Username no disponible");
+		}
+		return true;
+	}
+	
+	private boolean checkEmailAvailable(UsuarioVO usuario) throws Exception {
+		Optional<UsuarioVO> EmailFound = ur.findByCorreo(usuario.getCorreo());
+		if (EmailFound.isPresent()) {
+			throw new Exception("Email no disponible");
+		}
+		return true;
+	}
+
+	private boolean checkPasswordValid(UsuarioVO usuario) throws Exception {
+		if ( !usuario.getPassword().equals(usuario.getConfirmarpassword())) {
+			throw new Exception("Las contraseñas no son iguales");
+		}
+		return true;
+	}
+
+
+	@Override
+	public UsuarioVO createUser(UsuarioVO usuario) throws Exception {
+		if (checkUsernameAvailable(usuario) && checkPasswordValid(usuario) && checkEmailAvailable(usuario)) {
+			BCryptPasswordEncoder encriptador=new BCryptPasswordEncoder();
+			String contraseña = encriptador.encode(usuario.getPassword());
+			usuario.setPassword(contraseña);
+			usuario.setFecharegistro(LocalDate.now());
+			usuario = ur.save(usuario);
+		}
+		return usuario;
 	}
 }
