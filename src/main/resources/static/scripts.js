@@ -40,5 +40,6 @@ window.onload = function() {
         </article>
     `
         }
+        publicado.innerHTML = detalle;
     }
  }
