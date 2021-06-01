@@ -96,6 +96,7 @@ strong {
     flex-flow: row wrap;
     justify-content: center;
     align-items: stretch;
+    opacity: 1;
 }
 
 article {
