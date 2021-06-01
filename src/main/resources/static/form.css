@@ -1,0 +1,42 @@
+.formulario{
+	width: 35%;
+	padding: 30px;
+	margin: auto;
+	border: 1px solid black;
+	border-radius: 20px;
+	margin-top: 100px;
+	background-color: white;
+	text-align: center;	
+}
+
+.formulario img{
+	width: 150px;
+	opacity: 0.6;
+	margin-bottom: 20px;
+	text-align: center;
+}
+
+.alerta{
+	color: red;
+	margin: 10px;
+}
+
+.formularioregistro input {
+	width: 95%;
+	border: 1px solid black;
+	border-radius: 5px;
+	margin: 10px;
+	font-size: 100%;
+}
+
+.formularioregistro input[type=submit]{
+	width: 100px;
+	padding: 10px;
+	background-color: orange;
+	color: white;
+}
+
+input[type=submit]:hover {
+	background-color: #ff4800;
+	cursor: pointer;
+}
