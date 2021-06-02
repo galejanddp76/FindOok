@@ -6,6 +6,7 @@
     <title>Formulario publicacion</title>
     <link rel="stylesheet" th:href="@{/estilos.css}">
     <link rel="stylesheet" th:href="@{/form.css}">
+    <script th:src="@{/imagen.js}"></script>
 </head>
 
 <body>
@@ -32,16 +33,15 @@
         </nav>
     </header>
     <div class="formulario">
-    
+    <img alt="logo" src="/images/logo_small.png">
+    <div class="alerta" th:if="${Error}" th:text="${Error}">Name Error</div>
     <form th:action="@{/persistirpublicacion}" method="post" th:object="${publicaciones}" enctype="multipart/form-data">
-        <p>Usuario: <input type="text" name="usuario" id="usuario" th:value="${usuario}" th:field="*{usuario}"/>
-        <p>Titulo: <input type="text" name="titulo" id="titulo" />
-        <p>Descripcion <input type="text" name="descripcion" id="descripcion" />
-        <p>Imagen: <input type="file" name="file" id="imagenpublicacion" />
-        <p>Fecha <input type="date" name="fechacreacion" id="fechacreacion" />
-        <p>Precio <input type="text" name="precio" id="precio" />
+        <div><input type="text" name="titulo" id="titulo" placeholder="Titulo"></div>
+        <div><input type="text" name="descripcion" id="descripcion" placeholder="Descripcion"></div>
+        <div><input type="text" name="precio" id="precio" placeholder="Precio"></div>
+        <div><input type="file" name="file" id="imagenpublicacion" accept="image/*"> <img id="prev"></div>
         <input type="submit" value="insertar" />
-        <a th:href="@{/index}">Volver al indice</a>
+        <div class="cancelar"><a th:href="@{/index}">Cancelar</a></div>
     </form>
     </div>
 </body>

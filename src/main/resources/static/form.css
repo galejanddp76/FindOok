@@ -20,9 +20,11 @@
 .alerta{
 	color: red;
 	margin: 10px;
+	text-align: left;
+	margin: 0 15px;
 }
 
-.formularioregistro input {
+form input {
 	width: 95%;
 	border: 1px solid black;
 	border-radius: 5px;
@@ -30,7 +32,7 @@
 	font-size: 100%;
 }
 
-.formularioregistro input[type=submit]{
+form input[type=submit]{
 	width: 25%;
 	padding: 10px;
 	background-color: orange;
