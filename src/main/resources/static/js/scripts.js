@@ -14,9 +14,9 @@ window.onload = function() {
     contenedor.appendChild(publicado);
 
 	leerPublicacion();
-
+	//lee las publicaciones de la base de datos
     async function leerPublicacion() {
-        const response = await fetch('/publicaciones');
+        const response = await fetch('/publicacionesJson');
         const publicaciones = await response.json();
         mostrarPublicaciones(publicaciones);
     }

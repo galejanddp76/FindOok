@@ -30,6 +30,7 @@ strong {
     font-size: 20px;
     background: orange;
     color: white;
+    padding-left: 5px;
     position: fixed;
     bottom: 0;  
 }

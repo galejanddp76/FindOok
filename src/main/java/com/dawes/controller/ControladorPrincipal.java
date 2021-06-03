@@ -30,6 +30,11 @@ public class ControladorPrincipal {
 		return "index";
 	}
 	
+	@GetMapping("/panel")
+	public String panel() {
+		return "admin/panel";
+	}
+	
 	@GetMapping("/login")
 	public String login() {
 		return"login";
@@ -53,10 +58,12 @@ public class ControladorPrincipal {
 	
 	@PostMapping("/persistirusuario")
 	public String persistir(@Valid @ModelAttribute("usuario") UsuarioVO usuario, BindingResult result, Model model) {
+		//validacion de los campos del formulario
 		if(result.hasErrors()) {
 			return "registro";
 		}else {
-			try {	
+			try {
+				//compara si el usuario existe, si las contraseñas coinciden o si el correo existe y lo inserta
 				su.createUser(usuario);
 				sur.save(new UsuarioRolVO(0,sr.findById(2).get(),usuario));
 				return "index";
