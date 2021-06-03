@@ -1,6 +1,7 @@
 html{
 	height: 100%;
 }
+
 body {
 	height: 100%;
     margin: 0;
@@ -20,9 +21,18 @@ strong {
 
 .header {
     width: 100%;
-    font-size: 20px
+    font-size: 20px;
+    background: black; 
 }
 
+.footer {
+    width: 100%;
+    font-size: 20px;
+    background: orange;
+    color: white;
+    position: fixed;
+    bottom: 0;  
+}
 
 .logo>img {
     width: 60px;
@@ -48,7 +58,6 @@ strong {
     list-style: none;
     margin: 0;
     color: white;
-    background: black;
 }
 
 .navegacion a {
@@ -85,25 +94,27 @@ strong {
 }
 
 .contenedor {
-    font-size: .8em;
     width: 100%;
-    margin: 0 auto;
-    position: relative;
-    font-size: 20px
+    margin: auto;
 }
 
 .publicaciones {
     width: 100%;
-    margin: 0 auto ;
+    height: 82vh;
+    margin: auto ;
     display: flex;
     flex-flow: row wrap;
     justify-content: flex-start;
     align-items: stretch;
+    overflow: auto;
 }
 
 article {
-    width: 30%;
-    height: 300px;
+	display: block;
+    flex-basis: 572px;
+    height: 250px;
+    font-size: 20px;
+    line-height: 1.5rem;
     margin: 15px 20px;
     padding: 10px;
     border: 1px solid orange;
@@ -123,13 +134,13 @@ article>img {
 
 .info{ 
     width: 70%;
-    height:65%;
+    height:55%;
     box-sizing: border-box;
     float: left;
     padding-left: 10px;
     word-wrap: word-break;
     text-align: left;
-    text-overflow: ellipsis;
+    
 }
 
 .info span{
@@ -166,68 +177,9 @@ article>img {
     text-transform: uppercase;
 }
 
-.carrito {
-    display: block;
-    box-sizing: border-box;
-    width: 400px;
-    max-height: 700px;
-    color: black;
-    border: 1px solid orange;
-    position: absolute;
-    top: 0;
-    background-color: #d9ebf3;
-    transition: right .3s ease-in-out;
-    overflow: auto;
-}
-
-.carrito header {
-    height: 40px;
-    line-height: 40px;
-    text-align: center;
-    color: white;
-    padding-left: 8px;
-    background-color: orange;
-}
-
-.carrito>div {
-    width: 80%;
-    margin: 10px auto;
-    border: 1px solid orange;
-    padding: 10px;
-}
-
-.elimina-compra {
-    display: block;
-    font-size: .8em;
-    text-align: center;
-    background-color: white;
-    line-height: 25px;
-    margin: auto;
-}
-
-.eliminar {
-    display: block;
-    float: right;
-    font-size: 20px;
-    color: white;
-    background-color: orange;
-    border: 1px solid black;
-    padding: 10px;
-    cursor: pointer;
-    transition: background-color .5s ease-out;
-}
-
-.comprar {
-    display: block;
-    padding: 10px;
-    color: white;
-    background-color: orange;
-    border: 1px solid black;
-    cursor: pointer;
-    transition: background-color .5s ease-out;
-}
-
-.detallesCompra {
-    font-size: 20px;
-    text-align: left;
+.descripcion {
+ display: -webkit-box;
+  overflow: hidden;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
 }

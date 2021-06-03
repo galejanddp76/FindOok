@@ -2,8 +2,8 @@
 <html xmlns:th="thymeleaf.org" xmlns:sec="thymeleaf.org">
 <head>
 <meta charset="utf-8">
-<link rel="stylesheet" th:href="@{/estilos.css}">
-<link rel="stylesheet" th:href="@{/form.css}">
+<link rel="stylesheet" th:href="@{/css/estilos.css}">
+<link rel="stylesheet" th:href="@{/css/form.css}">
 <title>Registro</title>
 </head>
 <body>
@@ -31,7 +31,6 @@
     </header>
     <div class="formulario">
 	<img alt="logo" src="/images/logo_small.png">
-	<div class="alerta" th:if="${Error}" th:text="${Error}">Name Error</div>
 	<form th:action="@{/persistirusuario}" th:object="${usuario}" method="post">
 		<div><label><input type="text" name="username" id="username" placeholder="Nombre de usuario" th:fields="*{username}"></label></div>
 		<div class="alerta" th:if="${#fields.hasErrors('username')}" th:errors="*{username}">Name Error</div>
@@ -41,9 +40,13 @@
 		<div class="alerta" th:if="${#fields.hasErrors('password')}" th:errors="*{password}">Name Error</div>
 		<div><label><input type="password" name="confirmarpassword" id="confirmarpassword" placeholder="Confirmar contraseña" th:fields="*{confirmarpassword}"/></label></div>
 		<div class="alerta" th:if="${#fields.hasErrors('confirmarpassword')}" th:errors="*{confirmarpassword}">Name Error</div>
+		<div class="alerta" th:if="${Error}" th:text="${Error}">Name Error</div>
 		<div><input type="submit" value="Registrarse"/></div>
 		<div class="cancelar"><a th:href="@{/index}">Cancelar</a></div>
 	</form>
 	 </div>
+	     <footer class="footer">
+    <p>Gabriel Alejandro Delgado Perez<p>
+    </footer>
 </body>
 </html>

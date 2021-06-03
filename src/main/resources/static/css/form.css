@@ -43,3 +43,7 @@ input[type=submit]:hover {
 	background-color: #ff4800;
 	cursor: pointer;
 }
+
+textarea {
+	width: 95%;
+}

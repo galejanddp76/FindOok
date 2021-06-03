@@ -40,7 +40,7 @@ public class UsuarioVO implements UserDetails {
 	private int idusuario;
 	
 	@NotBlank
-	@Size(min = 5, max = 10)
+	@Size(min = 5, max = 10, message = "El tamaño debe estar entre 5 y 10 carácteres")
 	@Column(unique = true)
 	private String username;
 	

@@ -32,7 +32,7 @@ window.onload = function() {
             </div>
             <img src="${publicacion.imagenpublicacion}" alt="${publicacion.titulo}">
             <div class="info">
-                <span><strong>Descripcion:</strong> ${publicacion.descripcion}</span>
+                <div class="descripcion"><span><strong>Descripcion:</strong> ${publicacion.descripcion}</span></div>
                 <span><strong>Usuario:</strong> ${publicacion.usuario.username}</span>
                 <span><strong>Precio:</strong> ${publicacion.precio}€</span>
             </div>
