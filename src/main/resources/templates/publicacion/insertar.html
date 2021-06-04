@@ -6,6 +6,7 @@
     <title>Formulario publicacion</title>
     <link rel="stylesheet" th:href="@{/css/estilos.css}">
     <link rel="stylesheet" th:href="@{/css/form.css}">
+    <script th:src="@{/js/imagen.js}"></script>
 </head>
 
 <body>
@@ -55,16 +56,20 @@
             </ul>
         </nav>
     </header>
-    <div class="formulario">
+    <div class="formularioinsertar">
     <img alt="logo" src="/images/logo_small.png">
     <div class="alerta" th:if="${Error}" th:text="${Error}">Name Error</div>
     <form th:action="@{/persistirpublicacion}" method="post" th:object="${publicaciones}" enctype="multipart/form-data">
+    	<div class="uploadPreview">
+    		<img id="uploadPreview" src="/images/logo_small_icon_only.png" />
+    	</div>
         <div><input type="text" name="titulo" id="titulo" placeholder="Titulo"></div>
-        <div><textarea name="descripcion" id="descripcion" placeholder="Descripcion" rows="5"></textarea></div>
+        <div><textarea name="descripcion" id="descripcion" placeholder="Descripcion"></textarea></div>
         <div><input type="text" name="precio" id="precio" placeholder="Precio"></div>
-        <div><input type="file" name="file" id="imagenpublicacion"></div>
+        <input type="file" name="file" id="imagenpublicacion" onchange="previewImage();"/>
         <input type="submit" value="insertar" />
         <div class="cancelar"><a th:href="@{/index}">Cancelar</a></div>
+        
     </form>
     </div>
         <footer class="footer">
