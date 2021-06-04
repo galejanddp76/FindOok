@@ -30,10 +30,9 @@ public class ControladorRest {
 	 }
 	
 	 @GetMapping("/usuariosJson")
-	 public ResponseEntity<?> panel(){
+	 public ResponseEntity<?> todosLosUsuarios(){
 		 List<UsuarioVO> lista=(List<UsuarioVO>) su.findAll();
 		 if (lista.isEmpty()) return ResponseEntity.notFound().build();
 		 else return ResponseEntity.ok(lista);
 	 }
-
 }

@@ -1,5 +1,4 @@
 package com.dawes.controller;
-
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -50,6 +49,11 @@ public class ControladorPrincipal {
 		return"403";
 	}
 	
+	@GetMapping("/404")
+	public String p404() {
+		return "404";
+	}
+	
 	@GetMapping("/registrarse")
 	public String registro(Model modelo) {
 		modelo.addAttribute("usuario", new UsuarioVO());
@@ -66,7 +70,7 @@ public class ControladorPrincipal {
 				//compara si el usuario existe, si las contraseñas coinciden o si el correo existe y lo inserta
 				su.createUser(usuario);
 				sur.save(new UsuarioRolVO(0,sr.findById(2).get(),usuario));
-				return "index";
+				return "login";
 			} catch (Exception e) {
 				model.addAttribute("Error",e.getMessage());
 				return "registro";

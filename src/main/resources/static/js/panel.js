@@ -35,7 +35,7 @@ window.onload = function() {
         	<td>${usuario.correo}</td>
         	<td>${usuario.fecharegistro}</td>
         	<td><a href="/modificar"><img alt="modificar" src="/images/editar.png"></a></td>
-        	<td><a href="/eliminar"><img alt="eliminar" src="/images/papelera.png"></a></td> 
+        	<td><a href="/eliminar?idusuario=${usuario.idusuario}"><img alt="eliminar" src="/images/papelera.png"></a></td> 
       	</tr>
     `
         }

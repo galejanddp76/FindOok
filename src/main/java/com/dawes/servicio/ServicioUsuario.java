@@ -36,5 +36,9 @@ public interface ServicioUsuario {
 	void deleteAll();
 	
 	UsuarioVO createUser(UsuarioVO usuario) throws Exception;
+	
+	void eliminarUsuarioRol(UsuarioVO usuario);
+	
+	void eliminarPublicacionUsuario(UsuarioVO usuario);
 
 }

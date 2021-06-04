@@ -131,4 +131,15 @@ public class ServicioUsuarioImpl implements UserDetailsService, ServicioUsuario 
 		}
 		return usuario;
 	}
+
+	public void eliminarUsuarioRol(UsuarioVO usuario) {
+		ur.eliminarUsuarioRol(usuario);
+	}
+
+	public void eliminarPublicacionUsuario(UsuarioVO usuario) {
+		ur.eliminarPublicacionUsuario(usuario);
+	}
+	
+	
+	
 }

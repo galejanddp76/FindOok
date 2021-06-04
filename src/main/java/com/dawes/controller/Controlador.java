@@ -1,6 +1,7 @@
 package com.dawes.controller;
 
 import java.io.IOException;
+
 import java.time.LocalDate;
 import java.util.Map;
 
@@ -55,4 +56,13 @@ public class Controlador {
 		 return "index";
 		 
 	 }
+	 
+	 @GetMapping("/eliminar")
+		public String eliminar(@RequestParam int idusuario,Model modelo) {
+			UsuarioVO usuario = su.findById(idusuario).get();
+			su.eliminarUsuarioRol(usuario);
+			su.eliminarPublicacionUsuario(usuario);
+			su.deleteById(idusuario);
+			return "admin/panel";
+		}
 }

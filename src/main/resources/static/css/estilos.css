@@ -1,3 +1,8 @@
+*{
+	padding: 0;
+	margin: 0;
+}
+
 html{
 	height: 100%;
 }
@@ -22,7 +27,8 @@ strong {
 .header {
     width: 100%;
     font-size: 20px;
-    background: black; 
+    background-color: black;
+    height: 90px;
 }
 
 .footer {
@@ -30,7 +36,7 @@ strong {
     font-size: 20px;
     background: orange;
     color: white;
-    padding-left: 5px;
+    padding: 20px;
     position: fixed;
     bottom: 0;  
 }
@@ -47,16 +53,17 @@ strong {
     align-items: center;
     color: white;
     position: absolute;
-	cursor: default;
 	margin: 7px;
+}
+
+ul{
+  list-style: none;
 }
 
 .navegacion {
     display: flex;
     flex-flow: row wrap;
     justify-content: flex-end;
-    align-items: center;
-    list-style: none;
     margin: 0;
     color: white;
 }
@@ -65,33 +72,40 @@ strong {
 	display: block;
     text-decoration: none;
     color: white;
-}
-
-.navegacion li {
+    line-height: 30px;
     padding: 30px;
-    color: white;
-    background-color: transparent;
     transition: background-color .3s ease-out;
 }
 
+.navegacion a:hover {
+    background: orange;
+}
+
+.usuario{
+	display: flex;
+    flex-flow: row wrap;
+    justify-content: center;
+    align-items: center;
+    color: white;
+}
+
 .usuario>img {
-	width: 30px;
+	width:30px;
 	margin-left: 10px;
     border-radius: 30px;
 }
 
-.usuario {
-	display: flex;
-    flex-flow: row wrap;
-    justify-content: flex-start;
-    align-items: center;
-    color: white;
-    cursor: pointer;
+/*desplegar menu de usuario*/
+.navegacion>li>ul>li>a{
+  	display: none;
+  	border: 1px solid black;
+  	background-color: gray;
+  	font-size: 15px;
+  	padding: 10px;
 }
-
-.navegacion li:hover {
-    background: orange;
-    cursor: pointer;
+.navegacion>li:hover>ul>li>a {
+  	display:block;
+  	
 }
 
 .contenedor {
@@ -179,8 +193,8 @@ article>img {
 }
 
 .descripcion {
- display: -webkit-box;
-  overflow: hidden;
-  -webkit-line-clamp: 3;
-  -webkit-box-orient: vertical;
+ 	display: -webkit-box;
+  	overflow: hidden;
+  	-webkit-line-clamp: 3;
+  	-webkit-box-orient: vertical;
 }

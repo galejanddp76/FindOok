@@ -3,8 +3,9 @@ img {
 }
 
 h1{
+	text-align:center;
 	color: orange;
-	margin: 30px;
+	margin: 50px;
 }
 
 table{
