@@ -24,7 +24,6 @@
             </ul>
             <ul class="navegacion" sec:authorize="hasRole('ROLE_USER')">
             	<li><a th:href="@{/insertar}">Publicar</a></li>
-                <li><a th:href="@{/logout}">Cerrar Sesion</a></li>
                 <li>
                 	<a href="#">
                 		<div class="usuario">
@@ -57,7 +56,7 @@
         </nav>
     </header>
     <div class="formularioinsertar">
-    <img alt="logo" src="/images/logo_small.png">
+    <img class="marca" alt="logo" src="/images/logo_small.png">
     <div class="alerta" th:if="${Error}" th:text="${Error}">Name Error</div>
     <form th:action="@{/persistirpublicacion}" method="post" th:object="${publicaciones}" enctype="multipart/form-data">
     	<div class="uploadPreview">
@@ -72,9 +71,6 @@
         
     </form>
     </div>
-        <footer class="footer">
-    <p>Gabriel Alejandro Delgado Perez<p>
-    </footer>
 </body>
 
 </html>

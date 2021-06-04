@@ -12,6 +12,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
@@ -20,7 +21,9 @@ import com.dawes.modelo.PublicacionVO;
 import com.dawes.modelo.UsuarioVO;
 import com.dawes.servicio.ServicioCloudinary;
 import com.dawes.servicio.ServicioPublicacion;
+import com.dawes.servicio.ServicioRol;
 import com.dawes.servicio.ServicioUsuario;
+import com.dawes.servicio.ServicioUsuarioRol;
 
 @Controller
 public class Controlador {
@@ -30,6 +33,10 @@ public class Controlador {
 	ServicioCloudinary sc;
 	@Autowired
 	ServicioUsuario su;
+	@Autowired
+	ServicioUsuarioRol sur;
+	@Autowired
+	ServicioRol sr;
 	
 	@GetMapping("/insertar")
 	public String insertar(Model modelo) {
@@ -54,10 +61,23 @@ public class Controlador {
 		    publicacion.setUsuario(usuario);
 		 sp.save(publicacion);
 		 return "index";
-		 
 	 }
 	 
-	 @GetMapping("/eliminar")
+		@GetMapping("/modificaradmin")
+		public String modificar(@RequestParam int idusuario,Model modelo) {
+			UsuarioVO usuario = su.findById(idusuario).get();
+			modelo.addAttribute("usuario", usuario);
+			return "admin/modificar";
+		}
+		
+		@PostMapping("/editarusuario")
+		public String persistir(@ModelAttribute UsuarioVO usuario, Model model) {
+			su.save(usuario);
+			return "admin/panel";
+			}
+
+	 
+	 @GetMapping("/eliminaradmin")
 		public String eliminar(@RequestParam int idusuario,Model modelo) {
 			UsuarioVO usuario = su.findById(idusuario).get();
 			su.eliminarUsuarioRol(usuario);

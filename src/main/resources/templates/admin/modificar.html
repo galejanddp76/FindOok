@@ -1,11 +1,9 @@
 <!DOCTYPE html>
 <html xmlns:th="thymeleaf.org" xmlns:sec="thymeleaf.org">
 <head>
-<meta charset="UTF-8">
-<title>Panel administrador</title>
+<meta charset="utf-8">
 <link rel="stylesheet" th:href="@{/css/estilos.css}">
-<link rel="stylesheet" th:href="@{/css/panel.css}">
-<script th:src="@{/js/panel.js}"></script>
+<link rel="stylesheet" th:href="@{/css/form.css}">
 </head>
 <body>
 <header class="header">
@@ -54,6 +52,17 @@
             </ul>
         </nav>
     </header>
-    <h1>PANEL DE ADMINISTRADOR</h1>
+    <div class="formulario">
+	<img class="marca" alt="logo" src="/images/logo_small.png">
+	<form th:action="@{/editarusuario}" th:object="${usuario}" method="post">
+		<div><label><input type="text" name="username" id="username" th:value="${usuario.username}" th:fields="*{username}" placeholder="Nombre de usuario"/></label></div>
+		<div><label><input type="email" name="correo" id="correo" th:value="${usuario.correo}" th:fields="*{correo}"  placeholder="Email"/></label></div>
+		<div><input type="submit" value="Editar"/></div>
+		<input type="hidden" name="idusuario" id="idusuario" th:value="${usuario.idusuario}" th:field="*{idusuario}"/>
+		<input type="hidden" name="password" id="password" th:value="${usuario.password}" th:fields="*{password}"/>
+		<input type="hidden" name="fecharegistro" id="fecharegistro" th:value=${usuario.fecharegistro} th:field="*{fecharegistro}">
+		<div class="cancelar"><a th:href="@{/index}">Cancelar</a></div>
+	</form>
+	 </div>
 </body>
 </html>

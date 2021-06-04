@@ -24,7 +24,6 @@
             </ul>
             <ul class="navegacion" sec:authorize="hasRole('ROLE_USER')">
             	<li><a th:href="@{/insertar}">Publicar</a></li>
-                <li><a th:href="@{/logout}">Cerrar Sesion</a></li>
                 <li>
                 	<a href="#">
                 		<div class="usuario">
@@ -56,9 +55,6 @@
             </ul>
         </nav>
     </header>
-    <footer class="footer">
-    <p>Gabriel Alejandro Delgado Perez<p>
-    </footer>
 </body>
 
 </html>

@@ -37,7 +37,7 @@ public class MiSeguridad extends WebSecurityConfigurerAdapter{
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
 		http.authorizeRequests().antMatchers(HttpMethod.GET, "/insertar", "/modificar","/eliminar").hasAnyRole("USER","ADMIN");
-        http.authorizeRequests().antMatchers(HttpMethod.GET,  "/panel").hasRole("ADMIN");
+        http.authorizeRequests().antMatchers(HttpMethod.GET,  "/panel", "/modificaradmin","/eliminaradmin").hasRole("ADMIN");
         http.authorizeRequests().antMatchers(HttpMethod.POST,"/proveedores").hasRole("ADMIN");
         http.authorizeRequests().antMatchers(HttpMethod.DELETE,"/proveedor/*").hasRole("ADMIN");
 		http.httpBasic();

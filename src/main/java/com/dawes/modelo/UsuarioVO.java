@@ -56,7 +56,6 @@ public class UsuarioVO implements UserDetails {
 	private String password;
 	
 	@Transient
-	@NotBlank
 	private String confirmarpassword;
 	
 	@OneToMany(mappedBy = "usuario", fetch = FetchType.EAGER)
