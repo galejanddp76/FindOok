@@ -62,10 +62,10 @@
     	<div class="uploadPreview">
     		<img id="uploadPreview" src="/images/logo_small_icon_only.png" />
     	</div>
-        <div><input type="text" name="titulo" id="titulo" placeholder="Titulo"></div>
-        <div><textarea name="descripcion" id="descripcion" placeholder="Descripcion"></textarea></div>
-        <div><input type="text" name="precio" id="precio" placeholder="Precio"></div>
-        <input type="file" name="file" id="imagenpublicacion" onchange="previewImage();"/>
+        <div><input type="text" name="titulo" id="titulo" placeholder="Titulo" required="required"></div>
+        <div><textarea name="descripcion" id="descripcion" placeholder="Descripcion" required="required"></textarea></div>
+        <div><input type="text" name="precio" id="precio" placeholder="Precio" required="required"></div>
+        <input type="file" name="file" id="imagenpublicacion" onchange="previewImage();" required="required"/>
         <input type="submit" value="insertar" />
         <div class="cancelar"><a th:href="@{/index}">Cancelar</a></div>
         

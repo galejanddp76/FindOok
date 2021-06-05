@@ -11,6 +11,7 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -71,10 +72,20 @@ public class Controlador {
 		}
 		
 		@PostMapping("/editarusuario")
-		public String persistir(@ModelAttribute UsuarioVO usuario, Model model) {
-			su.save(usuario);
-			return "admin/panel";
+		public String persistir(@ModelAttribute UsuarioVO usuario,  BindingResult result,Model model) {
+			//validacion de los campos del formulario
+			if(result.hasErrors()) {
+				return "admin/modificar";
+			}else {
+				try {
+					su.createUser(usuario);
+					return "admin/panel";
+				} catch (Exception e) {
+					model.addAttribute("Error",e.getMessage());
+					return "admin/modificar";
+				}
 			}
+		}
 
 	 
 	 @GetMapping("/eliminaradmin")

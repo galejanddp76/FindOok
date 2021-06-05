@@ -8,12 +8,40 @@ h1{
 	margin: 50px;
 }
 
-table{
-	width: 60%;
+.contenedortablas{
+	width: 70%;
 	margin: auto;
-	border: 2px solid black;
+}
+
+.pestañas{
+	width: 100%;
+}
+
+button{
+	width: 150px;
+	font-size: 17px;
+	padding: 10px;
+	border-bottom: none;
+	border-top-left-radius: 10px;
+	border-top-right-radius: 10px;
+	background-color:#ffb66c;
+	cursor: pointer;
+}
+
+button:hover{
+	background-color:#d9ebf3;
+}
+
+table{
+	width: 100%;
 	text-align: center;
+	border: 2px solid black;
 	border-spacing: 0;
+}
+
+.tablapublicaciones{
+	width: 100%;
+	display: none;
 }
 
 th{

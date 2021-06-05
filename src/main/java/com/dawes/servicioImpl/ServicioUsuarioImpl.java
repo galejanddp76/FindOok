@@ -99,7 +99,7 @@ public class ServicioUsuarioImpl implements UserDetailsService, ServicioUsuario 
 	private boolean checkUsernameAvailable(UsuarioVO usuario) throws Exception {
 		Optional<UsuarioVO> userFound = ur.findByUsername(usuario.getUsername());
 		if (userFound.isPresent()) {
-			throw new Exception("Username no disponible");
+			throw new Exception("El nombre de usuario no esta disponible");
 		}
 		return true;
 	}
@@ -107,14 +107,14 @@ public class ServicioUsuarioImpl implements UserDetailsService, ServicioUsuario 
 	private boolean checkEmailAvailable(UsuarioVO usuario) throws Exception {
 		Optional<UsuarioVO> EmailFound = ur.findByCorreo(usuario.getCorreo());
 		if (EmailFound.isPresent()) {
-			throw new Exception("Email no disponible");
+			throw new Exception("El correo no esta disponible");
 		}
 		return true;
 	}
 
 	private boolean checkPasswordValid(UsuarioVO usuario) throws Exception {
 		if ( !usuario.getPassword().equals(usuario.getConfirmarpassword())) {
-			throw new Exception("Las contraseñas no son iguales");
+			throw new Exception("Las contraseñas no coinciden");
 		}
 		return true;
 	}

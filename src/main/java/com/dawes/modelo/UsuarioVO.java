@@ -14,8 +14,6 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Transient;
-import javax.validation.constraints.Email;
-import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
 
 import org.springframework.format.annotation.DateTimeFormat;
@@ -39,20 +37,16 @@ public class UsuarioVO implements UserDetails {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int idusuario;
 	
-	@NotBlank
-	@Size(min = 5, max = 10, message = "El tamaño debe estar entre 5 y 10 carácteres")
-	@Column(unique = true)
+	@Size(min = 5, message = "El tamaño del nombre de usuario debe ser mayor de 5 carácteres")
 	private String username;
 	
-	@NotBlank
-	@Email(message = "Debe tener una sintaxis de email")
 	@Column(unique = true)
 	private String correo;
 	
 	@DateTimeFormat(pattern = "yyy-MM-dd")
 	private LocalDate fecharegistro;
 	
-	@NotBlank
+	@Size(min = 5, message = "La contraseña es muy corta")
 	private String password;
 	
 	@Transient
