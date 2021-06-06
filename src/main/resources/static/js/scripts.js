@@ -2,16 +2,13 @@ window.onload = function() {
     var detalle = "";
 
     //crea los elementos
-    const contenedor = document.createElement("div");
-    const publicado = document.createElement("section");
+    const publicado = document.createElement("div");
 
     //crea las clases de los elementos
-    contenedor.classList.add("contenedor");
     publicado.classList.add("publicaciones");
 
     //crea la estructura de hijos y padres
-    document.body.appendChild(contenedor);
-    contenedor.appendChild(publicado);
+    document.body.appendChild(publicado);
 
 	leerPublicacion();
 	//lee las publicaciones de la base de datos
@@ -36,7 +33,7 @@ window.onload = function() {
                 <span><strong>Usuario:</strong> ${publicacion.usuario.username}</span>
                 <span><strong>Precio:</strong> ${publicacion.precio}€</span>
             </div>
-            <button class="boton">Añadir al carrito</button>
+            <a href="#" class="boton">Ver mas</a>
         </article>
     `
         }

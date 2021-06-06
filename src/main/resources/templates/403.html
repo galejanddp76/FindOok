@@ -1,11 +1,19 @@
 <!DOCTYPE html>
-<html xmlns:th="thymeleaf.org" xmlns:sec="thymeleaf.org">
+<html xmlns:th="thymeleaf.org">
+
 <head>
-<meta charset="utf-8">
-    <link rel="stylesheet" th:href="@{/css/estilos.css}">
-<title>Error</title>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+
+	<title>404</title>
+	<link href="https://fonts.googleapis.com/css?family=Montserrat:400,700,900" rel="stylesheet">
+	<link type="text/css" rel="stylesheet" href="/css/codigosError.css" />
 </head>
+
 <body>
+
 <header class="header">
         <nav>
             <div class="logo">
@@ -14,7 +22,17 @@
             </div>
         </nav>
     </header>
-	<h1>No tienes permiso para acceder a este recurso</h1>
-	<a th:href="@{/index}">Volver al indice</a>
-</body>
+	<div id="notfound">
+		<div class="notfound">
+			<div class="notfound-404">
+				<h1>Oops!</h1>
+			</div>
+			<h2>403 - Permisos insuficientes</h2>
+			<p>No tiene permiso para acceder a esta pagina</p>
+			<a th:href="@{/index}">Volver al inicio</a>
+		</div>
+	</div>
+
+</body><!-- This templates was made by Colorlib (https://colorlib.com) -->
+
 </html>

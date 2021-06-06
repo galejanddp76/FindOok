@@ -25,7 +25,7 @@
                 	<a href="#">
                 		<div class="usuario">
                    			<p  sec:authentication="name"></p>
-                    		<img th:src="@{/images/perfilDefault.jpg}">
+                    		<img th:src="@{/images/perfilDefault.png}">
                 		</div>
                 	</a>
                 	<ul>
@@ -41,7 +41,7 @@
                 	<a href="#">
                 		<div class="usuario">
                    			<p  sec:authentication="name"></p>
-                    		<img th:src="@{/images/perfilDefault.jpg}">
+                    		<img th:src="@{/images/perfilDefault.png}">
                 		</div>
                 	</a>
                 	<ul>
@@ -55,17 +55,20 @@
     <div class="formulario">
 	<img class="marca" alt="logo" src="/images/logo_small.png">
 	<form th:action="@{/editarusuario}" th:object="${usuario}" method="post">
+	<div class="alerta" th:if="${#fields.hasErrors('username')}" th:errors="*{username}">Name Error</div>
+	<div class="alerta" th:if="${Error}" th:text="${Error}">Name Error</div>
 		<div><label><input type="text" name="username" id="username" th:value="${usuario.username}" th:fields="*{username}" placeholder="Nombre de usuario" required="required"/></label></div>
 		<div><label><input type="email" name="correo" id="correo" th:value="${usuario.correo}" th:fields="*{correo}"  placeholder="Email" required="required" /></label></div>
-		<div class="alerta" th:if="${#fields.hasErrors('username')}" th:errors="*{username}">Name Error</div>
-		<div class="alerta" th:if="${Error}" th:text="${Error}">Name Error</div>
-		<div><input type="submit" value="Editar"/></div>
+		
+		<div class="botones">
+        	<input type="submit" value="Editar" />
+        	<a th:href="@{/index}">Cancelar</a>
+        </div>
 		
 		<input type="hidden" name="idusuario" id="idusuario" th:value="${idusuario}" th:field="*{idusuario}"/>
 		<input type="hidden" name="password" id="password" th:value="${usuario.password}" th:fields="*{password}"/>
 		<input type="hidden" name="confirmarpassword" id="confirmarpassword" th:value="${usuario.password}" th:fields="*{password}"/>
 		<input type="hidden" name="fecharegistro" id="fecharegistro" th:value=${usuario.fecharegistro} th:field="*{fecharegistro}">
-		<div class="cancelar"><a th:href="@{/index}">Cancelar</a></div>
 	</form>
 	 </div>
 </body>

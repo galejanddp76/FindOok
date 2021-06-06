@@ -57,18 +57,18 @@
     </header>
     <div class="formularioinsertar">
     <img class="marca" alt="logo" src="/images/logo_small.png">
-    <div class="alerta" th:if="${Error}" th:text="${Error}">Name Error</div>
     <form th:action="@{/persistirpublicacion}" method="post" th:object="${publicaciones}" enctype="multipart/form-data">
     	<div class="uploadPreview">
     		<img id="uploadPreview" src="/images/logo_small_icon_only.png" />
+    		<div class="divFile"><input type="file" name="file" class="inputFile" id="imagenpublicacion" onchange="previewImage();"/>SUBIR IMAGEN</div>
     	</div>
         <div><input type="text" name="titulo" id="titulo" placeholder="Titulo" required="required"></div>
         <div><textarea name="descripcion" id="descripcion" placeholder="Descripcion" required="required"></textarea></div>
-        <div><input type="text" name="precio" id="precio" placeholder="Precio" required="required"></div>
-        <input type="file" name="file" id="imagenpublicacion" onchange="previewImage();" required="required"/>
-        <input type="submit" value="insertar" />
-        <div class="cancelar"><a th:href="@{/index}">Cancelar</a></div>
-        
+        <div><input type="text" name="precio" id="precio" placeholder="Precio" required="required">
+        </div><div class="botones">
+        <input type="submit" value="Publicar" />
+        <a th:href="@{/index}">Cancelar</a>
+        </div>
     </form>
     </div>
 </body>

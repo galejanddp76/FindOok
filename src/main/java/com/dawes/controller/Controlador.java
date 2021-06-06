@@ -1,9 +1,12 @@
 package com.dawes.controller;
 
+import java.io.FileNotFoundException;
 import java.io.IOException;
 
 import java.time.LocalDate;
 import java.util.Map;
+
+import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
@@ -48,9 +51,14 @@ public class Controlador {
 	 @PostMapping("/persistirpublicacion")
 	 public String insertar(@RequestParam(name = "file", required = false) MultipartFile file, PublicacionVO publicacion) throws IOException {
 		 //Llama servicio cloudinary para subir la imagen
+		 try {
 		 Map<?, ?> result = sc.upload(file);
 		 //Establece url de la imagen de cloudinary para mostrarla
 		 publicacion.setImagenpublicacion((String)result.get("url"));
+		 //Si el usuario no pone ninguna imagen
+		 }catch (FileNotFoundException e) {
+		    publicacion.setImagenpublicacion("/images/logo_small.png");
+		}
 		 //Establece fecha de hoy
 		 publicacion.setFechacreacion(LocalDate.now());
 		 //obtener usuario logueado
@@ -60,7 +68,7 @@ public class Controlador {
 		    UserDetails userDetail = (UserDetails) auth.getPrincipal();
 		    UsuarioVO usuario = su.findByUsername(userDetail.getUsername()).get();
 		    publicacion.setUsuario(usuario);
-		 sp.save(publicacion);
+		    sp.save(publicacion);
 		 return "index";
 	 }
 	 
@@ -68,21 +76,21 @@ public class Controlador {
 		public String modificar(@RequestParam int idusuario,Model modelo) {
 			UsuarioVO usuario = su.findById(idusuario).get();
 			modelo.addAttribute("usuario", usuario);
-			return "admin/modificar";
+			return "admin/editarUsuario";
 		}
 		
 		@PostMapping("/editarusuario")
-		public String persistir(@ModelAttribute UsuarioVO usuario,  BindingResult result,Model model) {
+		public String persistir(@Valid @ModelAttribute("usuario") UsuarioVO usuario, BindingResult result,Model model) {
 			//validacion de los campos del formulario
 			if(result.hasErrors()) {
-				return "admin/modificar";
+				return "admin/editarUsuario";
 			}else {
 				try {
-					su.createUser(usuario);
+					su.save(usuario);
 					return "admin/panel";
 				} catch (Exception e) {
 					model.addAttribute("Error",e.getMessage());
-					return "admin/modificar";
+					return "admin/editarUsuario";
 				}
 			}
 		}

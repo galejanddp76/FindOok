@@ -51,7 +51,6 @@
                 </li>
             </ul>
         </nav>
-    </header>
     </header>	
    
 	<div class="formulario"> 
@@ -62,9 +61,12 @@
 	<form th:action="@{/login}" method="post">
 		<div><label><input type="text" name="username" placeholder="Nombre de usuario" required="required"/></label></div>
 		<div><label><input type="password" name="password" placeholder="Contraseña" required="required"/></label></div>
-		<div><input type="submit" value="Iniciar sesion"/></div>
-		<div class="cancelar"><a th:href="@{/index}">Cancelar</a></div>
+		<div class="botones">
+        	<input type="submit" value="Iniciar Sesion" />
+        	<a th:href="@{/index}">Cancelar</a>
+        </div>
 	</form>
+	<p>No tiene una cuenta? <a th:href="@{/registrarse}">Registrarse</a></p>
 	</div>
 </body>
 </html>
