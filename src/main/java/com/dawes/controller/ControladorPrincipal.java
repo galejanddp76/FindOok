@@ -34,6 +34,11 @@ public class ControladorPrincipal {
 		return "admin/panel";
 	}
 	
+	@GetMapping("/verPublicacion")
+	public String ver() {
+		return "publicacion/verPublicacion";
+	}
+	
 	@GetMapping("/login")
 	public String login() {
 		return"login";

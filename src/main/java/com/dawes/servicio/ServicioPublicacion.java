@@ -34,6 +34,8 @@ public interface ServicioPublicacion {
 	
 	List<PublicacionVO> findByTitulo(String titulo);
 	
+	void eliminarComentarioPublicacion(PublicacionVO publicacion);
+	
 	List<PublicacionVO> findByfechacreacionBetween(LocalDate fecha1, LocalDate fecha2);
 
 }

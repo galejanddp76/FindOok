@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html xmlns:th="thymeleaf.org" xmlns:sec="thymeleaf.org">
+
+<head>
+    <meta charset="utf-8">
+    <title>Formulario publicacion</title>
+    <link rel="stylesheet" th:href="@{/css/estilos.css}">
+    <link rel="stylesheet" th:href="@{/css/form.css}">
+    <script th:src="@{/js/imagen.js}"></script>
+</head>
+
+<body>
+    <header class="header">
+       <nav>
+       		<a th:href="@{/index}">
+            	<div class="logo">
+                	<img th:src="@{/images/logo_small_icon_only.png}" alt="libro">
+                	<h3>FINDOOK</h3>
+            	</div>
+      		</a>
+            <ul class="navegacion" sec:authorize="hasRole('ROLE_ANONYMOUS')">
+                <li><a th:href="@{/registrarse}">Registrarse</a></li>
+                <li><a th:href="@{/login}">Iniciar Sesion</a></li>
+            </ul>
+            <ul class="navegacion" sec:authorize="hasRole('ROLE_USER')">
+            	<li><a th:href="@{/insertar}">Publicar</a></li>
+                <li>
+                	<a href="#">
+                		<div class="usuario">
+                   			<p  sec:authentication="name"></p>
+                    		<img th:src="@{/images/perfilDefault.png}">
+                		</div>
+                	</a>
+                	<ul>
+                		<li><a th:href="@{/logout}">Ver perfil</a></li>
+                		<li><a th:href="@{/logout}">Cerrar Sesion</a></li>
+                	</ul>
+                </li>
+            </ul>
+            <ul class="navegacion" sec:authorize="hasRole('ROLE_ADMIN')">
+            <li><a th:href="@{/panel}">Panel</a></li>
+            	<li><a th:href="@{/insertar}">Publicar</a></li>
+                <li>
+                	<a href="#">
+                		<div class="usuario">
+                   			<p  sec:authentication="name"></p>
+                    		<img th:src="@{/images/perfilDefault.png}">
+                		</div>
+                	</a>
+                	<ul>
+                		<li><a th:href="@{/logout}">Ver perfil</a></li>
+                		<li><a th:href="@{/logout}">Cerrar Sesion</a></li>
+                	</ul>
+                </li>
+            </ul>
+        </nav>
+    </header>
+    <div class="formularioinsertar">
+    <img class="marca" alt="logo" src="/images/logo_small.png">
+    <form th:action="@{/editarpublicacion}" th:object="${publicacion}" method="post" enctype="multipart/form-data">
+    	<div class="uploadPreview">
+    		<img id="uploadPreview" th:src="${publicacion.imagenpublicacion}" />
+    		<div class="divFile"><input type="file" name="file" class="inputFile" id="imagenpublicacion" th:value="${publicacion.imagenpublicacion}" onchange="previewImage();"/>SUBIR IMAGEN</div>
+    		<input type="hidden" name="imagenpublicacion" id="imagenpublicacion" th:value="${publicacion.imagenpublicacion}" th:fields="*{imagenpublicacion}"/>
+    	</div>
+        <div><input type="text" name="titulo" id="titulo" placeholder="Titulo" th:value="${publicacion.titulo}" th:fields="*{titulo}" required="required"></div>
+        <div><textarea name="descripcion" id="descripcion" th:text="${publicacion.descripcion}" th:fields="*{descripcion}" placeholder="Descripcion" required="required"></textarea></div>
+        <div><input type="text" name="precio" id="precio" th:value="${publicacion.precio}" th:fields="*{precio}" placeholder="Precio" required="required">
+        </div><div class="botones">
+        	<input type="submit" value="Publicar" />
+        	<a th:href="@{/index}">Cancelar</a>
+        </div>
+        <input type="hidden" name="idpublicacion" id="idpublicacion" th:value="${publicacion.idpublicacion}" th:field="*{idpublicacion}"/>
+		<input type="hidden" name="fechacreacion" id="fechacreacion" th:value=${publicacion.fechacreacion} th:field="*{fechacreacion}">
+		<input type="hidden" name="usuario" id="usuario" th:value="${publicacion.usuario.idusuario}" th:field="*{usuario.idusuario}"/>
+    </form>
+    </div>
+</body>
+
+</html>

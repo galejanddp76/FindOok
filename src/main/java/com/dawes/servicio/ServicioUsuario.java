@@ -37,6 +37,8 @@ public interface ServicioUsuario {
 	
 	UsuarioVO createUser(UsuarioVO usuario) throws Exception;
 	
+	boolean checkPasswordValid(UsuarioVO usuario) throws Exception;
+	
 	void eliminarUsuarioRol(UsuarioVO usuario);
 	
 	void eliminarPublicacionUsuario(UsuarioVO usuario);

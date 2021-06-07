@@ -1,6 +1,8 @@
 package com.dawes.modelo;
 
 import java.time.LocalDate;
+
+
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
@@ -46,7 +48,6 @@ public class UsuarioVO implements UserDetails {
 	@DateTimeFormat(pattern = "yyy-MM-dd")
 	private LocalDate fecharegistro;
 	
-	@Size(min = 5, message = "La contraseña es muy corta")
 	private String password;
 	
 	@Transient

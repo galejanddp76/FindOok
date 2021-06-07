@@ -81,4 +81,9 @@ public class ServicioPublicacionImpl implements ServicioPublicacion {
 		return pr.findByfechacreacionBetween(fecha1, fecha2);
 	}
 
+	public void eliminarComentarioPublicacion(PublicacionVO publicacion) {
+		pr.eliminarComentarioPublicacion(publicacion);
+	}
+
+	
 }

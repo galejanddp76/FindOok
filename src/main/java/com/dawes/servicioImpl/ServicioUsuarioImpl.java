@@ -112,13 +112,13 @@ public class ServicioUsuarioImpl implements UserDetailsService, ServicioUsuario 
 		return true;
 	}
 
-	private boolean checkPasswordValid(UsuarioVO usuario) throws Exception {
+	public boolean checkPasswordValid(UsuarioVO usuario) throws Exception {
 		if ( !usuario.getPassword().equals(usuario.getConfirmarpassword())) {
 			throw new Exception("Las contraseñas no coinciden");
 		}
 		return true;
 	}
-
+	
 
 	@Override
 	public UsuarioVO createUser(UsuarioVO usuario) throws Exception {

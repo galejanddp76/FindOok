@@ -53,8 +53,8 @@ window.onload = function() {
         	<td>${usuario.username}</td>
         	<td>${usuario.correo}</td>
         	<td>${usuario.fecharegistro}</td>
-        	<td><a href="/modificaradmin?idusuario=${usuario.idusuario}"><img alt="modificar" src="/images/editar.png"></a></td>
-        	<td><a href="/eliminaradmin?idusuario=${usuario.idusuario}"><img alt="eliminar" src="/images/papelera.png"></a></td> 
+        	<td><a href="/editarusuario?idusuario=${usuario.idusuario}"><img alt="modificar" src="/images/editar.png"></a></td>
+        	<td><a href="/eliminarusuario?idusuario=${usuario.idusuario}"><img alt="eliminar" src="/images/papelera.png"></a></td> 
       	</tr>
     `
         }
@@ -78,8 +78,8 @@ window.onload = function() {
         	<td>${publicacion.titulo}</td>
         	<td>${publicacion.usuario.username}</td>
         	<td>${publicacion.fechacreacion}</td>
-        	<td><a href="/modificaradmin?idpublicacion=${publicacion.idpublicacion}"><img alt="modificar" src="/images/editar.png"></a></td>
-        	<td><a href="/eliminaradmin?idpublicacion=${publicacion.idpublicacion}"><img alt="eliminar" src="/images/papelera.png"></a></td> 
+        	<td><a href="/editarpublicacion?idpublicacion=${publicacion.idpublicacion}"><img alt="modificar" src="/images/editar.png"></a></td>
+        	<td><a href="/eliminarpublicacion?idpublicacion=${publicacion.idpublicacion}"><img alt="eliminar" src="/images/papelera.png"></a></td> 
       	</tr>
     `
         }

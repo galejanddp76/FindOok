@@ -11,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -71,36 +72,70 @@ public class Controlador {
 		 return "redirect:/index";
 	 }
 	 
-		@GetMapping("/modificaradmin")
-		public String modificar(@RequestParam int idusuario,Model modelo) {
+		@GetMapping("/editarusuario")
+		public String editarusuario(@RequestParam int idusuario,Model modelo) {
 			UsuarioVO usuario = su.findById(idusuario).get();
 			modelo.addAttribute("usuario", usuario);
-			return "admin/editarUsuario";
+			return "usuario/editarUsuario";
 		}
 		
 		@PostMapping("/editarusuario")
-		public String persistir(@Valid @ModelAttribute("usuario") UsuarioVO usuario, BindingResult result,Model model) {
-			//validacion de los campos del formulario
+		public String persistir(@Valid @ModelAttribute("usuario") UsuarioVO usuario,BindingResult result,Model model) {
 			if(result.hasErrors()) {
-				return "admin/editarUsuario";
-			}else {
-				try {
-					su.save(usuario);
-					return "admin/panel";
-				} catch (Exception e) {
-					model.addAttribute("Error",e.getMessage());
-					return "redirect:/admin/editarUsuario";
+					return "usuario/editarUsuario";
+				}else {
+					try {
+						su.checkPasswordValid(usuario);
+						BCryptPasswordEncoder encriptador=new BCryptPasswordEncoder();
+						String contraseña = encriptador.encode(usuario.getPassword());
+						usuario.setPassword(contraseña);
+						su.save(usuario);
+						return "redirect:/panel";
+					} catch (Exception e) {
+						model.addAttribute("Error",e.getMessage());
+						return "usuario/editarUsuario";
 				}
 			}
 		}
-
-	 
-	 @GetMapping("/eliminaradmin")
-		public String eliminar(@RequestParam int idusuario,Model modelo) {
+		
+	 @GetMapping("/eliminarusuario")
+		public String eliminarusuario(@RequestParam int idusuario,Model modelo) {
 			UsuarioVO usuario = su.findById(idusuario).get();
 			su.eliminarUsuarioRol(usuario);
 			su.eliminarPublicacionUsuario(usuario);
 			su.deleteById(idusuario);
-			return "admin/panel";
+			return "redirect:/panel";
 		}
+	 
+	 
+		@GetMapping("/editarpublicacion")
+		public String editarpublicacion(@RequestParam int idpublicacion,Model modelo) {
+			PublicacionVO publicacion = sp.findById(idpublicacion).get();
+			modelo.addAttribute("publicacion", publicacion);
+			return "publicacion/editarPublicacion";
+		}
+		
+		 @PostMapping("/editarpublicacion")
+		 public String modificar(@RequestParam(name = "file", required = false) MultipartFile file,  @ModelAttribute PublicacionVO publicacion) throws IOException {
+			 //Llama servicio cloudinary para subir la imagen
+			 try {
+			 Map<?, ?> result = sc.upload(file);
+			 //Establece url de la imagen de cloudinary para mostrarla
+			 publicacion.setImagenpublicacion((String)result.get("url"));
+			 //Si el usuario no pone ninguna imagen
+			 }catch (FileNotFoundException e) {
+			    publicacion.setImagenpublicacion(publicacion.getImagenpublicacion());
+			}
+			    sp.save(publicacion);
+			 return "redirect:/panel";
+		 }
+		
+		
+		 @GetMapping("/eliminarpublicacion")
+			public String eliminarpublicacion(@RequestParam int idpublicacion,Model modelo) {
+			 PublicacionVO publicacion = sp.findById(idpublicacion).get();
+				sp.eliminarComentarioPublicacion(publicacion);
+				sp.deleteById(idpublicacion);
+				return "redirect:/panel";
+			}
 }
