@@ -19,7 +19,7 @@
             	</div>
       		</a>
       		<form class="buscador" onkeyup="buscarInfo()">  
-				<input type="search" id="buscar" placeholder="Buscar...">  
+				<input type="search" id="buscar" placeholder="Buscar..." autocomplete="off">  
 			</form>  
             <ul class="navegacion" sec:authorize="hasRole('ROLE_ANONYMOUS')">
                 <li><a th:href="@{/registrarse}">Registrarse</a></li>

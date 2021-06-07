@@ -62,9 +62,9 @@
     		<img id="uploadPreview" src="/images/logo_small_icon_only.png" />
     		<div class="divFile"><input type="file" name="file" class="inputFile" id="imagenpublicacion" onchange="previewImage();"/>SUBIR IMAGEN</div>
     	</div>
-        <div><input type="text" name="titulo" id="titulo" placeholder="Titulo" required="required"></div>
+        <div><input type="text" name="titulo" id="titulo" placeholder="Titulo" required="required" autocomplete="off"></div>
         <div><textarea name="descripcion" id="descripcion" placeholder="Descripcion" required="required"></textarea></div>
-        <div><input type="text" name="precio" id="precio" placeholder="Precio" required="required">
+        <div><input type="text" name="precio" id="precio" placeholder="Precio" required="required" autocomplete="off">
         </div><div class="botones">
         <input type="submit" value="Publicar" />
         <a th:href="@{/index}">Cancelar</a>

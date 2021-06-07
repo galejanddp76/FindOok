@@ -57,8 +57,8 @@
 	<form th:action="@{/editarusuario}" th:object="${usuario}" method="post">
 	<div class="alerta" th:if="${#fields.hasErrors('username')}" th:errors="*{username}">Name Error</div>
 	<div class="alerta" th:if="${Error}" th:text="${Error}">Name Error</div>
-		<div><label><input type="text" name="username" id="username" th:value="${usuario.username}" th:fields="*{username}" placeholder="Nombre de usuario" required="required"/></label></div>
-		<div><label><input type="email" name="correo" id="correo" th:value="${usuario.correo}" th:fields="*{correo}" placeholder="Email" required="required" /></label></div>
+		<div><label><input type="text" name="username" id="username" th:value="${usuario.username}" th:fields="*{username}" placeholder="Nombre de usuario" required="required" autocomplete="off"/></label></div>
+		<div><label><input type="email" name="correo" id="correo" th:value="${usuario.correo}" th:fields="*{correo}" placeholder="Email" required="required" autocomplete="off"/></label></div>
 		<div><label><input type="password" name="password" id="password" placeholder="Contraseña" th:fields="*{password}" required="required"/></label></div>
 		<div><label><input type="password" name="confirmarpassword" id="confirmarpassword" placeholder="Confirmar contraseña" th:fields="*{password}" required="required"/></label></div>
 		<div class="botones">

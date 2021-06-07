@@ -59,7 +59,7 @@
 		<p>La contraseña o el nombre de usuario son incorrectos, vuelva a intentarlo.</p>
 	</div>
 	<form th:action="@{/login}" method="post">
-		<div><label><input type="text" name="username" placeholder="Nombre de usuario" required="required"/></label></div>
+		<div><label><input type="text" name="username" placeholder="Nombre de usuario" required="required" autocomplete="off"/></label></div>
 		<div><label><input type="password" name="password" placeholder="Contraseña" required="required"/></label></div>
 		<div class="botones">
         	<input type="submit" value="Iniciar Sesion" />

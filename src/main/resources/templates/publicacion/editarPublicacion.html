@@ -63,9 +63,9 @@
     		<div class="divFile"><input type="file" name="file" class="inputFile" id="imagenpublicacion" th:value="${publicacion.imagenpublicacion}" onchange="previewImage();"/>SUBIR IMAGEN</div>
     		<input type="hidden" name="imagenpublicacion" id="imagenpublicacion" th:value="${publicacion.imagenpublicacion}" th:fields="*{imagenpublicacion}"/>
     	</div>
-        <div><input type="text" name="titulo" id="titulo" placeholder="Titulo" th:value="${publicacion.titulo}" th:fields="*{titulo}" required="required"></div>
-        <div><textarea name="descripcion" id="descripcion" th:text="${publicacion.descripcion}" th:fields="*{descripcion}" placeholder="Descripcion" required="required"></textarea></div>
-        <div><input type="text" name="precio" id="precio" th:value="${publicacion.precio}" th:fields="*{precio}" placeholder="Precio" required="required">
+        <div><input type="text" name="titulo" id="titulo" placeholder="Titulo" th:value="${publicacion.titulo}" th:fields="*{titulo}" required="required" autocomplete="off"></div>
+        <div><textarea name="descripcion" id="descripcion" th:text="${publicacion.descripcion}" th:fields="*{descripcion}" placeholder="Descripcion" required="required" autocomplete="off"></textarea></div>
+        <div><input type="text" name="precio" id="precio" th:value="${publicacion.precio}" th:fields="*{precio}" placeholder="Precio" required="required" autocomplete="off">
         </div><div class="botones">
         	<input type="submit" value="Publicar" />
         	<a th:href="@{/index}">Cancelar</a>
