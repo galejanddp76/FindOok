@@ -46,6 +46,18 @@ strong {
 	margin: 7px;
 }
 
+.buscador{
+	float: left;
+	margin-top: 25px;
+	margin-left: 25px;
+}
+
+.buscador input{
+	width: 400px;
+	border-radius: 5px;
+	padding: 5px;
+}
+
 ul{
   list-style: none;
 }

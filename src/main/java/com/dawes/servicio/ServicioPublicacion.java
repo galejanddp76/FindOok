@@ -2,11 +2,11 @@ package com.dawes.servicio;
 
 import java.time.LocalDate;
 
+
 import java.util.List;
 import java.util.Optional;
 
 import com.dawes.modelo.PublicacionVO;
-import com.dawes.modelo.UsuarioVO;
 
 public interface ServicioPublicacion {
 
@@ -32,10 +32,8 @@ public interface ServicioPublicacion {
 
 	void deleteAll();
 	
-	Optional<PublicacionVO> findByTitulo(String titulo);
+	List<PublicacionVO> findByTitulo(String titulo);
 	
 	List<PublicacionVO> findByfechacreacionBetween(LocalDate fecha1, LocalDate fecha2);
-	
-	List<PublicacionVO> findByUsuario(UsuarioVO usuario);
 
 }

@@ -1,6 +1,7 @@
 package com.dawes.servicioImpl;
 
 import java.time.LocalDate;
+
 import java.util.List;
 import java.util.Optional;
 
@@ -8,7 +9,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.dawes.modelo.PublicacionVO;
-import com.dawes.modelo.UsuarioVO;
 import com.dawes.repositorio.PublicacionRepositorio;
 import com.dawes.servicio.ServicioPublicacion;
 
@@ -73,16 +73,12 @@ public class ServicioPublicacionImpl implements ServicioPublicacion {
 		pr.deleteAll();
 	}
 
-	public Optional<PublicacionVO> findByTitulo(String titulo) {
+	public List<PublicacionVO> findByTitulo(String titulo) {
 		return pr.findByTitulo(titulo);
 	}
 
 	public List<PublicacionVO> findByfechacreacionBetween(LocalDate fecha1, LocalDate fecha2) {
 		return pr.findByfechacreacionBetween(fecha1, fecha2);
-	}
-
-	public List<PublicacionVO> findByUsuario(UsuarioVO usuario) {
-		return pr.findByUsuario(usuario);
 	}
 
 }

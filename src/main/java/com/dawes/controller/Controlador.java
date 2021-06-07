@@ -2,7 +2,6 @@ package com.dawes.controller;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;
-
 import java.time.LocalDate;
 import java.util.Map;
 
@@ -69,7 +68,7 @@ public class Controlador {
 		    UsuarioVO usuario = su.findByUsername(userDetail.getUsername()).get();
 		    publicacion.setUsuario(usuario);
 		    sp.save(publicacion);
-		 return "index";
+		 return "redirect:/index";
 	 }
 	 
 		@GetMapping("/modificaradmin")
@@ -90,7 +89,7 @@ public class Controlador {
 					return "admin/panel";
 				} catch (Exception e) {
 					model.addAttribute("Error",e.getMessage());
-					return "admin/editarUsuario";
+					return "redirect:/admin/editarUsuario";
 				}
 			}
 		}

@@ -40,3 +40,39 @@ window.onload = function() {
         publicado.innerHTML = detalle;
     }
  }
+ 
+ function buscarInfo(){
+ 	const publicado = document.querySelector(".publicaciones");
+ 	publicado.innerHTML = '';
+ 	const buscar = document.querySelector("#buscar");
+ 	const texto = buscar.value.toLowerCase();
+ 	
+ 	leerPublicacionTitulo();
+ 	async function leerPublicacionTitulo() {
+    const response = await fetch('/publicacionesJson/'+texto);
+    const publicaciones = await response.json();
+    filtrar(publicaciones);
+    }
+ 	
+ 	const filtrar = (publicaciones) =>{
+ 	for (publicacion of publicaciones) {
+ 		let titulo = publicacion.titulo.toLowerCase();
+ 		if(titulo.indexOf(texto) !== -1){
+ 			publicado.innerHTML += `
+        	<article class = "item">
+            	<div class="titulo">
+                	<span><strong>${publicacion.titulo}</strong></span>
+            	</div>
+            	<img src="${publicacion.imagenpublicacion}" alt="${publicacion.titulo}">
+            	<div class="info">
+                	<div class="descripcion"><span><strong>Descripcion:</strong> ${publicacion.descripcion}</span></div>
+                	<span><strong>Usuario:</strong> ${publicacion.usuario.username}</span>
+                	<span><strong>Precio:</strong> ${publicacion.precio}€</span>
+            	</div>
+            	<a href="#" class="boton">Ver mas</a>
+        	</article>`;
+ 		}
+ 	}
+}
+}
+ 
