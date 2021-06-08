@@ -42,6 +42,11 @@ public class Controlador {
 	@Autowired
 	ServicioRol sr;
 	
+	@GetMapping("/verPublicacion")
+	public String ver(@RequestParam int idpublicacion,Model modelo) {
+		return "publicacion/verPublicacion";
+	}
+	
 	@GetMapping("/insertar")
 	public String insertar(Model modelo) {
 		modelo.addAttribute("publicaciones", new PublicacionVO());
@@ -107,7 +112,6 @@ public class Controlador {
 			return "redirect:/panel";
 		}
 	 
-	 
 		@GetMapping("/editarpublicacion")
 		public String editarpublicacion(@RequestParam int idpublicacion,Model modelo) {
 			PublicacionVO publicacion = sp.findById(idpublicacion).get();
@@ -129,7 +133,6 @@ public class Controlador {
 			    sp.save(publicacion);
 			 return "redirect:/panel";
 		 }
-		
 		
 		 @GetMapping("/eliminarpublicacion")
 			public String eliminarpublicacion(@RequestParam int idpublicacion,Model modelo) {

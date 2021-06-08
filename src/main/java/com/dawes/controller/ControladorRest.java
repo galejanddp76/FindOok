@@ -1,7 +1,7 @@
 package com.dawes.controller;
 
 import java.util.List;
-
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -31,11 +31,11 @@ public class ControladorRest {
 			 return ResponseEntity.ok(lista);
 	 }
 	
-	 @GetMapping("/usuariosJson")
-	 public ResponseEntity<?> todosLosUsuarios(){
-		 List<UsuarioVO> lista=(List<UsuarioVO>) su.findAll();
-		 if (lista.isEmpty()) return ResponseEntity.notFound().build();
-		 else return ResponseEntity.ok(lista);
+	 @GetMapping("/publicacionesJson/id/{idpublicacion}")
+	 public ResponseEntity<?> findbyId(@PathVariable int idpublicacion) {
+		 Optional<PublicacionVO> publicacion=sp.findById(idpublicacion);
+		 if (publicacion.isPresent()) return ResponseEntity.ok(publicacion.get());
+		 else return ResponseEntity.notFound().build();
 	 }
 	 
 	 @GetMapping("/publicacionesJson/{titulo}")
@@ -45,5 +45,13 @@ public class ControladorRest {
 			 return ResponseEntity.notFound().build();
 		 else 
 			 return ResponseEntity.ok(lista);
+	 }	 
+	 
+	 
+	 @GetMapping("/usuariosJson")
+	 public ResponseEntity<?> todosLosUsuarios(){
+		 List<UsuarioVO> lista=(List<UsuarioVO>) su.findAll();
+		 if (lista.isEmpty()) return ResponseEntity.notFound().build();
+		 else return ResponseEntity.ok(lista);
 	 }
 }
