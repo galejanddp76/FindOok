@@ -102,32 +102,30 @@ ul{
   	display:block;
 }
 
+.contenedor{
+	display: flex;
+	flex-flow: row wrap;
+	width: 80%;
+	margin: auto;
+	margin-top: 20px;
+	background-color: #d9ebf3;
+	border: 2px solid orange;
+	padding: 20px;
+}
 
 .publicacion {
 	display: flex;
 	flex-flow: row wrap;
-	justify-content: center;
-	padding: 10px;
-	width: 80%;
-	margin: auto;
-	margin-top: 50px;
-	background-color: #d9ebf3;
-	border: 2px solid orange;
+	width: 100%;
 }
 
-.publicacion img{
-	width: 300px;
-	margin-right: 40px;
+.detalles{
+	width: 75%;
 }
 
-.contenedor{
-	color: orange;
-	width: 70%;
-}
-
-.contenedor h1{
+h2{
 	text-transform: uppercase;
-	padding-top: 10px;
+	color: orange;
 }
 
 .titulo{
@@ -137,17 +135,35 @@ ul{
 
 .info{
 	margin-top: 20px;
-	font-size: 20px;
+	font-size: 18px;
 	color: black;
+}
+
+.descripcion{
+	margin-bottom: 10px;
 }
 
 .precio strong{
-	color: black;
+	color: orange;
 }
 
-.usu {
+.usuimg{
 	display: flex;
-	flex-flow: row wrap;
+	flex-flow: column wrap;
+	justify-content: center;
+	align-items: center;
+	width: 20%;
+	padding: 15px;
+}
+
+.usuimg img{
+	width: 100%;
+	height: 400px;
+}
+
+.contacto {
+	display: flex;
+	flex-flow: column wrap;
 	justify-content: flex-start;
 	align-items: center;
 	width: 100%;
@@ -156,35 +172,66 @@ ul{
 	
 }
 
-.usuomg{
-	display: flex;
-	flex-flow: column wrap;
-	justify-content: center;
-	align-items: center;
-}
-
-.usu img {
-	width: 38px;
-	height: 35px;
-	border: 2px solid black;
-	border-radius: 60px;
-	margin-right: 5px;
+.contacto strong{
+	color: orange;
 }
 
 .botones{
-	float: right;
-	padding: 20px;
+	width: 100%;
+	padding: 15px;
 }
 
 .botones a{
+	float: right;
+	text-align: center;
+	width: 10%;
 	padding: 10px;
+	margin: 10px;
 	background-color: orange;
 	color: white;
 	text-decoration: none;
 	border: 1px solid black;
+	border-radius: 5px;
 	transition: background-color .3s ease-out;
 }
 
 .botones a:hover{
 	background-color: #ff4800;
+}
+
+.comentarios{
+	padding: 15px;
+	
+}
+
+form {
+	margin: 20px;
+}
+
+form input{
+	padding: 5px;
+	margin: 10px;
+	font-size: 15px;
+}
+
+form textarea{
+	font-size: 15px;
+	margin-left: 10px;
+	padding: 5px;
+	width: 600px;
+	height: 100px;
+}
+
+form input[type=submit]{
+	width: 15%;
+	padding: 10px;
+	background-color: orange;
+	color: white;
+	border: 1px solid black;
+	border-radius: 5px;
+}
+
+input[type=submit]:hover{
+	background-color: #ff4800;
+	cursor: pointer;
 }
