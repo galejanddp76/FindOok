@@ -21,9 +21,11 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.dawes.modelo.ComentarioVO;
 import com.dawes.modelo.PublicacionVO;
 import com.dawes.modelo.UsuarioVO;
 import com.dawes.servicio.ServicioCloudinary;
+import com.dawes.servicio.ServicioComentario;
 import com.dawes.servicio.ServicioPublicacion;
 import com.dawes.servicio.ServicioRol;
 import com.dawes.servicio.ServicioUsuario;
@@ -41,11 +43,10 @@ public class Controlador {
 	ServicioUsuarioRol sur;
 	@Autowired
 	ServicioRol sr;
+	@Autowired
+	ServicioComentario sco;
 	
-	@GetMapping("/verPublicacion")
-	public String ver(@RequestParam int idpublicacion,Model modelo) {
-		return "publicacion/verPublicacion";
-	}
+	
 	
 	@GetMapping("/insertar")
 	public String insertar(Model modelo) {
@@ -76,6 +77,31 @@ public class Controlador {
 		    sp.save(publicacion);
 		 return "redirect:/index";
 	 }
+	 
+		@GetMapping("/verPublicacion")
+		public String ver(@RequestParam int idpublicacion,Model modelo) {
+			ComentarioVO comentario = new ComentarioVO();
+			comentario.setPublicacion(sp.findById(idpublicacion).get());
+			modelo.addAttribute("comentarios", comentario);
+			return "publicacion/verPublicacion";
+		}
+		
+		@PostMapping("/comentar")
+		public String comentar(@ModelAttribute("comentario") ComentarioVO comentario,Model modelo) {
+			//Establece fecha de hoy
+			 comentario.setFecha(LocalDate.now());
+			//obtener usuario logueado
+			 Authentication auth = SecurityContextHolder
+			            .getContext()
+			            .getAuthentication();
+			    UserDetails userDetail = (UserDetails) auth.getPrincipal();
+			    UsuarioVO usuario = su.findByUsername(userDetail.getUsername()).get();
+			    comentario.setUsuario(usuario);
+			    sco.save(comentario);
+			return "redirect:/verPublicacion?idpublicacion="+comentario.getPublicacion().getIdpublicacion();
+		}
+		
+		
 	 
 		@GetMapping("/editarusuario")
 		public String editarusuario(@RequestParam int idusuario,Model modelo) {

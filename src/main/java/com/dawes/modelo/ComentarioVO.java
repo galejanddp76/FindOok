@@ -26,7 +26,7 @@ public class ComentarioVO {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int idcomentario;
-	
+	private String asunto;
 	private String contenido;
 	@DateTimeFormat(pattern = "yyy-MM-dd")
 	private LocalDate fecha;

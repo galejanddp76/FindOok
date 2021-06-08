@@ -158,7 +158,7 @@ h2{
 
 .usuimg img{
 	width: 100%;
-	height: 400px;
+	height: 350px;
 }
 
 .contacto {
@@ -184,9 +184,10 @@ h2{
 .botones a{
 	float: right;
 	text-align: center;
-	width: 10%;
 	padding: 10px;
+	width: 15%;
 	margin: 10px;
+	font-size: 15px;
 	background-color: orange;
 	color: white;
 	text-decoration: none;
@@ -201,7 +202,12 @@ h2{
 
 .comentarios{
 	padding: 15px;
-	
+	width: 100%;
+}
+
+.comenta{
+	width: 100%;
+	text-align: center;
 }
 
 form {

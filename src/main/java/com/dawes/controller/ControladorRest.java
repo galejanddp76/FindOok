@@ -9,8 +9,10 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.dawes.modelo.ComentarioVO;
 import com.dawes.modelo.PublicacionVO;
 import com.dawes.modelo.UsuarioVO;
+import com.dawes.servicio.ServicioComentario;
 import com.dawes.servicio.ServicioPublicacion;
 import com.dawes.servicio.ServicioUsuario;
 
@@ -21,6 +23,8 @@ public class ControladorRest {
 	ServicioPublicacion sp;
 	@Autowired
 	ServicioUsuario su;
+	@Autowired
+	ServicioComentario sc;
 	
 	@GetMapping("/publicacionesJson")
 	 public ResponseEntity<?> todasLasPublicaciones(){
@@ -53,5 +57,12 @@ public class ControladorRest {
 		 List<UsuarioVO> lista=(List<UsuarioVO>) su.findAll();
 		 if (lista.isEmpty()) return ResponseEntity.notFound().build();
 		 else return ResponseEntity.ok(lista);
+	 }
+	 
+	 @GetMapping("/comentariosJson/id/{idpublicacion}")
+	 public ResponseEntity<?> todosLosComentariosDeUnaPublicacion(@PathVariable int idpublicacion){
+		 List<ComentarioVO> comentarios=sc.findByPublicacion(sp.findById(idpublicacion).get());
+		 if (comentarios.isEmpty()) return ResponseEntity.notFound().build();
+		 else return ResponseEntity.ok(comentarios);
 	 }
 }

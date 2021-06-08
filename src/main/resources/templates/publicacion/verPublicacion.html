@@ -56,12 +56,12 @@
     	<div class="publicacion">
     	</div>
     	<div class="comentarios">
-    	<h2>COMENTARIOS</h2>
-    	<form method="post">
-			<div><label><input type="text" name="username" placeholder="Asunto" required="required" autocomplete="off"/></label></div>
-			<div><textarea name="descripcion" id="descripcion" placeholder="Comentario" required="required"></textarea></div>
+    	<div class="comenta"><h2>COMENTARIOS</h2></div>
+    	<form class="comentar" th:action="@{/comentar}" th:object="${comentario}" method="post">
+			<div><label><input type="text" name="asunto" id="asunto" placeholder="Asunto" required="required" autocomplete="off"/></label></div>
+			<div><textarea name="contenido" id="contenido" placeholder="Comentario" required="required"></textarea></div>
         	<input type="submit" value="Comentar" />
-	</form>
+		</form>
     	</div>
     </div>
 </body>
