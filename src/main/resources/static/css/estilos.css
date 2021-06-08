@@ -177,7 +177,7 @@ article>img {
     border: 1px solid black;
     cursor: pointer;
     text-decoration: none;
-    transition: background-color .5s ease-out;
+    transition: background-color .3s ease-out;
 }
 
 .boton:hover {

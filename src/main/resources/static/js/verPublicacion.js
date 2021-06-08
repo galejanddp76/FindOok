@@ -25,19 +25,21 @@ window.onload = function() {
     //crea detalles de la publicacion
     function mostrarDetalles(publicacion) {
         let detalles = `
-        <img src="${publicacion.imagenpublicacion}" alt="${publicacion.titulo}">
-            <div class="titulo">
-                <h2>${publicacion.titulo}</h2>
-            </div>
-            <div class="usu"><img src="/images/perfilDefault.png" alt="usuario"><p>${publicacion.usuario.username}<p></div>
-            <div class="info">
-                <div class="descripcion"><p>${publicacion.descripcion}</p></div>
-                <div class="precio"><strong>Precio:</strong>${publicacion.precio}€</div>
-            </div>
-            <div>
-            	<a href="/intercambio">Intercambiar</a>
-            	<a href="/pago">Comprar</a>
-           	</div>`;
+        <div class="usuimg">
+        	<img src="${publicacion.imagenpublicacion}" alt="${publicacion.titulo}"/>
+        	<div class="usu"><img src="/images/perfilDefault.png" alt="usuario"><strong>${publicacion.usuario.username}</strong></div>
+        </div>
+            <div class="contenedor">
+                <div class="titulo"><h2>${publicacion.titulo}</h2></div>
+                <div class="info">
+                	<div class="descripcion"><p>${publicacion.descripcion}</p></div>
+                	<div class="precio"><strong>Precio:</strong>${publicacion.precio}€</div>
+                	<div class="botones">
+            			<a href="/intercambio">Intercambiar</a>
+            			<a href="/pago">Comprar</a>
+           			</div>
+            	</div>
+            </div>`;
             publicado.innerHTML = detalles;
         }
         

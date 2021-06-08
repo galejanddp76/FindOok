@@ -18,6 +18,7 @@ body {
     overflow-x: hidden;
     } 
     
+    
 .header {
     width: 100%;
     font-size: 20px;
@@ -102,17 +103,46 @@ ul{
 }
 
 
-
 .publicacion {
 	display: flex;
 	flex-flow: row wrap;
-	justify-content: flex-start;
-	align-items: center;
-	padding: 20px;
+	justify-content: center;
+	padding: 10px;
+	width: 80%;
+	margin: auto;
+	margin-top: 50px;
+	background-color: #d9ebf3;
+	border: 2px solid orange;
+}
+
+.publicacion img{
+	width: 300px;
+	margin-right: 40px;
+}
+
+.contenedor{
+	color: orange;
+	width: 70%;
+}
+
+.contenedor h1{
+	text-transform: uppercase;
+	padding-top: 10px;
 }
 
 .titulo{
-	text-transform: uppercase;
+	padding: 10px;
+	border-bottom: 2px solid blue;
+}
+
+.info{
+	margin-top: 20px;
+	font-size: 20px;
+	color: black;
+}
+
+.precio strong{
+	color: black;
 }
 
 .usu {
@@ -120,7 +150,17 @@ ul{
 	flex-flow: row wrap;
 	justify-content: flex-start;
 	align-items: center;
+	width: 100%;
+	margin-top: 25px;
+	font-size: 18px;
 	
+}
+
+.usuomg{
+	display: flex;
+	flex-flow: column wrap;
+	justify-content: center;
+	align-items: center;
 }
 
 .usu img {
@@ -131,3 +171,20 @@ ul{
 	margin-right: 5px;
 }
 
+.botones{
+	float: right;
+	padding: 20px;
+}
+
+.botones a{
+	padding: 10px;
+	background-color: orange;
+	color: white;
+	text-decoration: none;
+	border: 1px solid black;
+	transition: background-color .3s ease-out;
+}
+
+.botones a:hover{
+	background-color: #ff4800;
+}
