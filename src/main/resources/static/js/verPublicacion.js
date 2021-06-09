@@ -28,12 +28,12 @@ window.onload = function() {
                 <div class="info">
                 	<div class="descripcion"><p>${publicacion.descripcion}</p></div>
                 	<div class="precio"><strong>Precio:</strong> ${publicacion.precio}€</div>
-                	<div class="botones">
-            			<a href="/intercambio">Intercambiar</a>
-            			<a href="/pago">Comprar</a>
-           			</div>
             	</div>
-            </div>`;
+            </div>
+            <div class="botones">
+            	<a href="/intercambio">Intercambiar</a>
+            	<a href="/pago">Comprar</a>
+           	</div>`;
             document.querySelector(".publicacion").innerHTML = detalles;
             document.querySelector(".comentar").innerHTML += `<input type="hidden" name="publicacion" id="publicacion" value="${publicacion.idpublicacion}"/>`;
         }
@@ -51,10 +51,10 @@ window.onload = function() {
         for (comentario of comentarios) {
             datoscomentarios += `
  		<div class="comentario">
-        	<h2>${comentario.usuario.username}</h2>
         	<h3>${comentario.asunto}</h3>
+        	<p><strong>Publicado por:</strong> ${comentario.usuario.username}.</p>
         	<p>${comentario.contenido}</p>
-        	<p>${comentario.fecha}</p>
+        	<p class="fecha">${comentario.fecha}</p>
       	</div>
     `
         }
