@@ -36,6 +36,6 @@ public interface ServicioPublicacion {
 	
 	void eliminarComentarioPublicacion(PublicacionVO publicacion);
 	
-	List<PublicacionVO> findByfechacreacionBetween(LocalDate fecha1, LocalDate fecha2);
+	List<PublicacionVO> findByUsuario(int idusuario);
 
 }

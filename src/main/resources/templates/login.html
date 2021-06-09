@@ -7,7 +7,7 @@
 <title>Iniciar sesion</title>
 </head>
 <body>
-	<header class="header">
+	 <header class="header">
        <nav>
        		<a th:href="@{/index}">
             	<div class="logo">
@@ -15,11 +15,15 @@
                 	<h3>FINDOOK</h3>
             	</div>
       		</a>
+      		<form class="buscador" onkeyup="buscarInfo()">  
+				<input type="search" id="buscar" placeholder="Buscar..." autocomplete="off">  
+			</form>  
             <ul class="navegacion" sec:authorize="hasRole('ROLE_ANONYMOUS')">
-                <li><a th:href="@{/registrarse}">Registrarse</a></li>
-                <li><a th:href="@{/login}">Iniciar Sesion</a></li>
+                <li sec:authorize="hasRole('ROLE_ANONYMOUS')"><a th:href="@{/registrarse}">Registrarse</a></li>
+                <li sec:authorize="hasRole('ROLE_ANONYMOUS')"><a th:href="@{/login}">Iniciar Sesion</a></li>
             </ul>
-            <ul class="navegacion" sec:authorize="hasRole('ROLE_USER')">
+            <ul class="navegacion" sec:authorize="isAuthenticated()">
+            	<li sec:authorize="hasRole('ROLE_ADMIN')"><a th:href="@{/panel}">Panel</a></li>
             	<li><a th:href="@{/insertar}">Publicar</a></li>
                 <li>
                 	<a href="#">
@@ -29,29 +33,13 @@
                 		</div>
                 	</a>
                 	<ul>
-                		<li><a th:href="@{/logout}">Ver perfil</a></li>
-                		<li><a th:href="@{/logout}">Cerrar Sesion</a></li>
-                	</ul>
-                </li>
-            </ul>
-            <ul class="navegacion" sec:authorize="hasRole('ROLE_ADMIN')">
-            <li><a th:href="@{/panel}">Panel</a></li>
-            	<li><a th:href="@{/insertar}">Publicar</a></li>
-                <li>
-                	<a href="#">
-                		<div class="usuario">
-                   			<p  sec:authentication="name"></p>
-                    		<img th:src="@{/images/perfilDefault.png}">
-                		</div>
-                	</a>
-                	<ul>
-                		<li><a th:href="@{/logout}">Ver perfil</a></li>
+                		<li><a th:href="@{/perfil}">Ver perfil</a></li>
                 		<li><a th:href="@{/logout}">Cerrar Sesion</a></li>
                 	</ul>
                 </li>
             </ul>
         </nav>
-    </header>	
+    </header>
    
 	<div class="formulario"> 
 	<img class="marca" alt="logo" src="/images/logo_small.png">
@@ -66,7 +54,7 @@
         	<a th:href="@{/index}">Cancelar</a>
         </div>
 	</form>
-	<p>No tiene una cuenta? <a th:href="@{/registrarse}">Registrarse</a></p>
+	<p>¿No tienes una cuenta? <a th:href="@{/registrarse}">Registrarse</a></p>
 	</div>
 </body>
 </html>

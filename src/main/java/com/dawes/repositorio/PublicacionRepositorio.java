@@ -1,9 +1,5 @@
 package com.dawes.repositorio;
 
-
-import java.time.LocalDate;
-
-
 import java.util.List;
 
 import org.springframework.data.jpa.repository.Modifying;
@@ -20,7 +16,7 @@ public interface PublicacionRepositorio extends CrudRepository<PublicacionVO, In
 	@Query("select p from PublicacionVO p where p.titulo like %?1%")
 	List<PublicacionVO> findByTitulo(String titulo);
 	
-	List<PublicacionVO> findByfechacreacionBetween(LocalDate fecha1, LocalDate fecha2);
+	List<PublicacionVO> findByUsuario(int idusuario);
 	
 	@Modifying
 	@Transactional

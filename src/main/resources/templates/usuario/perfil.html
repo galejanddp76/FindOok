@@ -1,16 +1,14 @@
 <!DOCTYPE html>
 <html xmlns:th="thymeleaf.org" xmlns:sec="thymeleaf.org">
-
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>FindOok</title>
-    <link rel="stylesheet" th:href="@{/css/estilos.css}">
-    <script th:src="@{/js/scripts.js}"></script>
+<meta charset="utf-8">
+<title>Perfil</title>
+<link rel="stylesheet" th:href="@{/css/estilos.css}">
+<link rel="stylesheet" th:href="@{/css/perfil.css}">
+<script th:src="@{/js/perfil.js}"></script>
 </head>
-<body>
-    <header class="header">
+<body th:onload="cargarPublicaciones([[${usuario.idusuario}]])">
+ <header class="header">
        <nav>
        		<a th:href="@{/index}">
             	<div class="logo">
@@ -43,6 +41,14 @@
             </ul>
         </nav>
     </header>
+    <div class="banner" th:object="${usuario}">
+    	<img alt="usuario" src="/images/perfilDefault.png">
+		<div>
+    		<h1 th:text="${usuario.username}"></h1>
+			<h2>Cantidad de publicaciones: </h2>
+			<h3><a th:href="@{/editarusuario(idusuario=${usuario.idusuario})}">Editar usuario</a></h3>
+		</div>
+    </div>
+	<div class="misPublicaciones"></div>
 </body>
-
 </html>

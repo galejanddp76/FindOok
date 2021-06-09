@@ -46,7 +46,18 @@ public class Controlador {
 	@Autowired
 	ServicioComentario sco;
 	
-	
+	@GetMapping("/perfil")
+	public String verperfil(Model modelo) {
+		//obtener usuario logueado
+		 Authentication auth = SecurityContextHolder
+		            .getContext()
+		            .getAuthentication();
+		    UserDetails userDetail = (UserDetails) auth.getPrincipal();
+		    UsuarioVO usuario = su.findByUsername(userDetail.getUsername()).get();
+		    int idusuario = usuario.getIdusuario();
+		    modelo.addAttribute("usuario", su.findById(idusuario).get());
+		return "usuario/perfil";
+	}
 	
 	@GetMapping("/insertar")
 	public String insertar(Model modelo) {
@@ -101,8 +112,6 @@ public class Controlador {
 			return "redirect:/verPublicacion?idpublicacion="+comentario.getPublicacion().getIdpublicacion();
 		}
 		
-		
-	 
 		@GetMapping("/editarusuario")
 		public String editarusuario(@RequestParam int idusuario,Model modelo) {
 			UsuarioVO usuario = su.findById(idusuario).get();
@@ -121,7 +130,7 @@ public class Controlador {
 						String contraseña = encriptador.encode(usuario.getPassword());
 						usuario.setPassword(contraseña);
 						su.save(usuario);
-						return "redirect:/panel";
+						return "redirect:/exito";
 					} catch (Exception e) {
 						model.addAttribute("Error",e.getMessage());
 						return "usuario/editarUsuario";
@@ -129,13 +138,13 @@ public class Controlador {
 			}
 		}
 		
-	 @GetMapping("/eliminarusuario")
+		@GetMapping("/eliminarusuario")
 		public String eliminarusuario(@RequestParam int idusuario,Model modelo) {
 			UsuarioVO usuario = su.findById(idusuario).get();
 			su.eliminarUsuarioRol(usuario);
 			su.eliminarPublicacionUsuario(usuario);
 			su.deleteById(idusuario);
-			return "redirect:/panel";
+			return "redirect:/exito";
 		}
 	 
 		@GetMapping("/editarpublicacion")
@@ -157,7 +166,7 @@ public class Controlador {
 			    publicacion.setImagenpublicacion(publicacion.getImagenpublicacion());
 			}
 			    sp.save(publicacion);
-			 return "redirect:/panel";
+			 return "redirect:/exito";
 		 }
 		
 		 @GetMapping("/eliminarpublicacion")
@@ -165,6 +174,6 @@ public class Controlador {
 			 PublicacionVO publicacion = sp.findById(idpublicacion).get();
 				sp.eliminarComentarioPublicacion(publicacion);
 				sp.deleteById(idpublicacion);
-				return "redirect:/panel";
+				return "redirect:/exito";
 			}
 }

@@ -49,14 +49,29 @@ public class ControladorRest {
 			 return ResponseEntity.notFound().build();
 		 else 
 			 return ResponseEntity.ok(lista);
-	 }	 
+	 }
 	 
+	 @GetMapping("/publicacionesJson/usuario/{idusuario}")
+	 public ResponseEntity<?> publicacionUsuario(@PathVariable int idusuario) {
+		 List<PublicacionVO> lista=sp.findByUsuario(idusuario);
+		 if (lista.isEmpty()) 
+			 return ResponseEntity.notFound().build();
+		 else 
+			 return ResponseEntity.ok(lista);
+	 }
 	 
 	 @GetMapping("/usuariosJson")
 	 public ResponseEntity<?> todosLosUsuarios(){
 		 List<UsuarioVO> lista=(List<UsuarioVO>) su.findAll();
 		 if (lista.isEmpty()) return ResponseEntity.notFound().build();
 		 else return ResponseEntity.ok(lista);
+	 }
+	 
+	 @GetMapping("/usuariosJson/id/{idusuario}")
+	 public ResponseEntity<?> findbyIdusuario(@PathVariable int idusuario) {
+		 Optional<UsuarioVO> usuario = su.findById(idusuario);
+		 if (usuario.isPresent()) return ResponseEntity.ok(usuario.get());
+		 else return ResponseEntity.notFound().build();
 	 }
 	 
 	 @GetMapping("/comentariosJson/id/{idpublicacion}")

@@ -2,11 +2,12 @@
 <html xmlns:th="thymeleaf.org" xmlns:sec="thymeleaf.org">
 <head>
 <meta charset="utf-8">
+<title>Editar usuario</title>
 <link rel="stylesheet" th:href="@{/css/estilos.css}">
 <link rel="stylesheet" th:href="@{/css/form.css}">
 </head>
 <body>
-<header class="header">
+ <header class="header">
        <nav>
        		<a th:href="@{/index}">
             	<div class="logo">
@@ -14,28 +15,15 @@
                 	<h3>FINDOOK</h3>
             	</div>
       		</a>
+      		<form class="buscador" onkeyup="buscarInfo()">  
+				<input type="search" id="buscar" placeholder="Buscar..." autocomplete="off">  
+			</form>  
             <ul class="navegacion" sec:authorize="hasRole('ROLE_ANONYMOUS')">
-                <li><a th:href="@{/registrarse}">Registrarse</a></li>
-                <li><a th:href="@{/login}">Iniciar Sesion</a></li>
+                <li sec:authorize="hasRole('ROLE_ANONYMOUS')"><a th:href="@{/registrarse}">Registrarse</a></li>
+                <li sec:authorize="hasRole('ROLE_ANONYMOUS')"><a th:href="@{/login}">Iniciar Sesion</a></li>
             </ul>
-            <ul class="navegacion" sec:authorize="hasRole('ROLE_USER')">
-            	<li><a th:href="@{/insertar}">Publicar</a></li>
-                <li><a th:href="@{/logout}">Cerrar Sesion</a></li>
-                <li>
-                	<a href="#">
-                		<div class="usuario">
-                   			<p  sec:authentication="name"></p>
-                    		<img th:src="@{/images/perfilDefault.png}">
-                		</div>
-                	</a>
-                	<ul>
-                		<li><a th:href="@{/logout}">Ver perfil</a></li>
-                		<li><a th:href="@{/logout}">Cerrar Sesion</a></li>
-                	</ul>
-                </li>
-            </ul>
-            <ul class="navegacion" sec:authorize="hasRole('ROLE_ADMIN')">
-            <li><a th:href="@{/panel}">Panel</a></li>
+            <ul class="navegacion" sec:authorize="isAuthenticated()">
+            	<li sec:authorize="hasRole('ROLE_ADMIN')"><a th:href="@{/panel}">Panel</a></li>
             	<li><a th:href="@{/insertar}">Publicar</a></li>
                 <li>
                 	<a href="#">
@@ -45,7 +33,7 @@
                 		</div>
                 	</a>
                 	<ul>
-                		<li><a th:href="@{/logout}">Ver perfil</a></li>
+                		<li><a th:href="@{/perfil}">Ver perfil</a></li>
                 		<li><a th:href="@{/logout}">Cerrar Sesion</a></li>
                 	</ul>
                 </li>

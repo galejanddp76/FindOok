@@ -1,6 +1,6 @@
 package com.dawes.servicioImpl;
 
-import java.time.LocalDate;
+
 
 import java.util.List;
 import java.util.Optional;
@@ -77,8 +77,10 @@ public class ServicioPublicacionImpl implements ServicioPublicacion {
 		return pr.findByTitulo(titulo);
 	}
 
-	public List<PublicacionVO> findByfechacreacionBetween(LocalDate fecha1, LocalDate fecha2) {
-		return pr.findByfechacreacionBetween(fecha1, fecha2);
+
+
+	public List<PublicacionVO> findByUsuario(int idusuario) {
+		return pr.findByUsuario(idusuario);
 	}
 
 	public void eliminarComentarioPublicacion(PublicacionVO publicacion) {
