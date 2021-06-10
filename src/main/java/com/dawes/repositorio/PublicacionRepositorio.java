@@ -23,4 +23,9 @@ public interface PublicacionRepositorio extends CrudRepository<PublicacionVO, In
 	@Transactional
 	@Query("delete from ComentarioVO where publicacion=:publicacion")
 	void eliminarComentarioPublicacion(PublicacionVO publicacion);
+	
+	@Modifying
+	@Transactional
+	@Query("delete from OfertaVO where publicacion=:publicacion")
+	void eliminarOfertaPublicacion(PublicacionVO publicacion);
 }

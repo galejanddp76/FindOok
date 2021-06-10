@@ -1,0 +1,9 @@
+.oferta{
+	width: 45%;
+	padding: 20px;
+	margin: auto;
+}
+
+.oferta img{
+	float: left
+}

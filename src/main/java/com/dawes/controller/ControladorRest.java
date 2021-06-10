@@ -13,9 +13,11 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.dawes.modelo.ComentarioVO;
+import com.dawes.modelo.OfertaVO;
 import com.dawes.modelo.PublicacionVO;
 import com.dawes.modelo.UsuarioVO;
 import com.dawes.servicio.ServicioComentario;
+import com.dawes.servicio.ServicioOferta;
 import com.dawes.servicio.ServicioPublicacion;
 import com.dawes.servicio.ServicioUsuario;
 
@@ -28,6 +30,8 @@ public class ControladorRest {
 	ServicioUsuario su;
 	@Autowired
 	ServicioComentario sc;
+	@Autowired
+	ServicioOferta so;
 	
 	@GetMapping("/publicacionesJson")
 	 public ResponseEntity<?> todasLasPublicaciones(){
@@ -87,5 +91,19 @@ public class ControladorRest {
 		 List<ComentarioVO> comentarios=sc.findByPublicacion(sp.findById(idpublicacion).get());
 		 if (comentarios.isEmpty()) return ResponseEntity.notFound().build();
 		 else return ResponseEntity.ok(comentarios);
+	 }
+	 
+	 @GetMapping("/ofertasJson/usuario")
+	 public ResponseEntity<?> ofertaUsuario() {
+		 Authentication auth = SecurityContextHolder
+		            .getContext()
+		            .getAuthentication();
+		    UserDetails userDetail = (UserDetails) auth.getPrincipal();
+		    UsuarioVO usuario = su.findByUsername(userDetail.getUsername()).get();
+		 List<OfertaVO> lista=so.findByUsuario(usuario);
+		 if (lista.isEmpty()) 
+			 return ResponseEntity.notFound().build();
+		 else 
+			 return ResponseEntity.ok(lista);
 	 }
 }

@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="utf-8">
-    <title>FindOok</title>
+   <title>FindOok</title>
     <link rel="icon" type="image/png" href="/images/logo_small_icon_only.png">
     <link rel="stylesheet" th:href="@{/css/estilos.css}">
     <link rel="stylesheet" th:href="@{/css/form.css}">
@@ -44,20 +44,19 @@
     </header>
     <div class="formularioinsertar">
     <img class="marca" alt="logo" src="/images/logo_small.png">
-    <form th:action="@{/persistirpublicacion}" method="post" th:object="${publicaciones}" enctype="multipart/form-data">
-    	<div class="uploadPreview">
-    		<img id="uploadPreview" src="/images/logo_small_icon_only.png" />
-    		<div class="divFile"><input type="file" name="file" class="inputFile" id="imagenpublicacion" onchange="previewImage();"/>SUBIR IMAGEN</div>
-    	</div>
-        <div><input type="text" name="titulo" id="titulo" placeholder="Titulo" required="required" autocomplete="off"></div>
-        <div><textarea name="descripcion" id="descripcion" placeholder="Descripcion" required="required"></textarea></div>
-        <div><input type="number" name="precio" id="precio" placeholder="Precio" min="1" max="999" required="required" autocomplete="off">
-        </div><div class="botones">
-        <input type="submit" value="Publicar" />
-        <a th:href="@{/index}">Cancelar</a>
+    <form th:action="@{/compra}" method="post" th:object="${ofertas}" enctype="multipart/form-data">
+        <div><input type="text" name="pago" id="pago" placeholder="Numero de tarjeta" required="required" autocomplete="off"></div>
+        <div><input type="number" name="pago" id="mes" placeholder="MM" min="1" max="12" required="required" autocomplete="off">
+        <input type="number" name="pago" id="anyo" placeholder="AAAA" min="1000" max="9999" required="required" autocomplete="off">
+        <input type="text" name="pago" id="cvc" placeholder="CVC" maxlength="3" required="required" autocomplete="off"></div>
+        <div><input type="text" name="pago" id="nombre" placeholder="Nombre de tarjeta" required="required" autocomplete="off"></div>
+		<div class="botones">
+        	<input type="submit" value="Pagar" />
+        	<a th:href="@{/index}">Cancelar</a>
         </div>
+        <input type="hidden" name="idpublicacion" id="idpublicacion" th:value="${ofertas.publicacion.idpublicacion}" th:field="*{publicacion.idpublicacion}"/>
+		<input type="hidden" name="idusuario" id="idusuario" th:value="${ofertas.usuario.idusuario}" th:field="*{usuario.idusuario}"/>
     </form>
     </div>
 </body>
-
 </html>

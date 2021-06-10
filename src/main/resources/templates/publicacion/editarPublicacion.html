@@ -3,7 +3,8 @@
 
 <head>
     <meta charset="utf-8">
-    <title>Formulario publicacion</title>
+    <title>FindOok</title>
+    <link rel="icon" type="image/png" href="/images/logo_small_icon_only.png">
     <link rel="stylesheet" th:href="@{/css/estilos.css}">
     <link rel="stylesheet" th:href="@{/css/form.css}">
     <script th:src="@{/js/imagen.js}"></script>
@@ -34,6 +35,7 @@
                 	</a>
                 	<ul>
                 		<li><a th:href="@{/perfil}">Ver perfil</a></li>
+                		<li><a th:href="@{/ofertas}">Ofertas recibidas</a></li>
                 		<li><a th:href="@{/logout}">Cerrar Sesion</a></li>
                 	</ul>
                 </li>
@@ -50,7 +52,7 @@
     	</div>
         <div><input type="text" name="titulo" id="titulo" placeholder="Titulo" th:value="${publicacion.titulo}" th:fields="*{titulo}" required="required" autocomplete="off"></div>
         <div><textarea name="descripcion" id="descripcion" th:text="${publicacion.descripcion}" th:fields="*{descripcion}" placeholder="Descripcion" required="required" autocomplete="off"></textarea></div>
-        <div><input type="text" name="precio" id="precio" th:value="${publicacion.precio}" th:fields="*{precio}" placeholder="Precio" required="required" autocomplete="off">
+        <div><input type="number" name="precio" id="precio" th:value="${publicacion.precio}" th:fields="*{precio}" placeholder="Precio"  min="1" max="999" required="required" autocomplete="off">
         </div><div class="botones">
         	<input type="submit" value="Publicar" />
         	<a th:href="@{/index}">Cancelar</a>

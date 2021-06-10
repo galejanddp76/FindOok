@@ -31,8 +31,8 @@ window.onload = function() {
             	</div>
             </div>
             <div class="botones">
-            	<a href="/intercambio">Intercambiar</a>
-            	<a href="/pago">Comprar</a>
+            	<a href="/intercambio?idpublicacion=${publicacion.idpublicacion}">Intercambiar</a>
+            	<a href="/compra?idpublicacion=${publicacion.idpublicacion}">Comprar</a>
            	</div>`;
             document.querySelector(".publicacion").innerHTML = detalles;
             document.querySelector(".comentar").innerHTML += `<input type="hidden" name="publicacion" id="publicacion" value="${publicacion.idpublicacion}"/>`;
@@ -51,10 +51,12 @@ window.onload = function() {
         for (comentario of comentarios) {
             datoscomentarios += `
  		<div class="comentario">
+ 		<a sec:authorize="hasRole('ROLE_ADMIN')" class="eliminar" href="/eliminarcomentario?idcomentario=${comentario.idcomentario}">x</a>
         	<h3>${comentario.asunto}</h3>
         	<p><strong>Publicado por:</strong> ${comentario.usuario.username}.</p>
         	<p>${comentario.contenido}</p>
         	<p class="fecha">${comentario.fecha}</p>
+        	
       	</div>
     `
         }

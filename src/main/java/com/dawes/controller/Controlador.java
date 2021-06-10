@@ -22,10 +22,12 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.dawes.modelo.ComentarioVO;
+import com.dawes.modelo.OfertaVO;
 import com.dawes.modelo.PublicacionVO;
 import com.dawes.modelo.UsuarioVO;
 import com.dawes.servicio.ServicioCloudinary;
 import com.dawes.servicio.ServicioComentario;
+import com.dawes.servicio.ServicioOferta;
 import com.dawes.servicio.ServicioPublicacion;
 import com.dawes.servicio.ServicioRol;
 import com.dawes.servicio.ServicioUsuario;
@@ -45,6 +47,8 @@ public class Controlador {
 	ServicioRol sr;
 	@Autowired
 	ServicioComentario sco;
+	@Autowired
+	ServicioOferta so;
 	
 	@GetMapping("/perfil")
 	public String verperfil(Model modelo) {
@@ -61,7 +65,6 @@ public class Controlador {
 		    }catch (Exception e) {
 				return "logout";
 			}
-		
 	}
 	
 	@GetMapping("/insertar")
@@ -91,7 +94,7 @@ public class Controlador {
 		    UsuarioVO usuario = su.findByUsername(userDetail.getUsername()).get();
 		    publicacion.setUsuario(usuario);
 		    sp.save(publicacion);
-		 return "redirect:/index";
+		 return "redirect:/exito";
 	 }
 	 
 		@GetMapping("/verPublicacion")
@@ -100,21 +103,6 @@ public class Controlador {
 			comentario.setPublicacion(sp.findById(idpublicacion).get());
 			modelo.addAttribute("comentarios", comentario);
 			return "publicacion/verPublicacion";
-		}
-		
-		@PostMapping("/comentar")
-		public String comentar(@ModelAttribute("comentario") ComentarioVO comentario,Model modelo) {
-			//Establece fecha de hoy
-			 comentario.setFecha(LocalDate.now());
-			//obtener usuario logueado
-			 Authentication auth = SecurityContextHolder
-			            .getContext()
-			            .getAuthentication();
-			    UserDetails userDetail = (UserDetails) auth.getPrincipal();
-			    UsuarioVO usuario = su.findByUsername(userDetail.getUsername()).get();
-			    comentario.setUsuario(usuario);
-			    sco.save(comentario);
-			return "redirect:/verPublicacion?idpublicacion="+comentario.getPublicacion().getIdpublicacion();
 		}
 		
 		@GetMapping("/editarusuario")
@@ -147,6 +135,8 @@ public class Controlador {
 		public String eliminarusuario(@RequestParam int idusuario,Model modelo) {
 			UsuarioVO usuario = su.findById(idusuario).get();
 			su.eliminarUsuarioRol(usuario);
+			su.eliminarComentarioUsuario(usuario);
+			su.eliminarOfertaUsuario(usuario);
 			su.eliminarPublicacionUsuario(usuario);
 			su.deleteById(idusuario);
 			return "redirect:/exito";
@@ -178,7 +168,109 @@ public class Controlador {
 			public String eliminarpublicacion(@RequestParam int idpublicacion,Model modelo) {
 			 PublicacionVO publicacion = sp.findById(idpublicacion).get();
 				sp.eliminarComentarioPublicacion(publicacion);
+				sp.eliminarOfertaPublicacion(publicacion);
 				sp.deleteById(idpublicacion);
+				return "redirect:/exito";
+			}
+		 
+		 @PostMapping("/comentar")
+		 public String comentar(@ModelAttribute("comentario") ComentarioVO comentario,Model modelo) {
+			//Establece fecha de hoy
+			 comentario.setFecha(LocalDate.now());
+			//obtener usuario logueado
+			 Authentication auth = SecurityContextHolder
+			            .getContext()
+			            .getAuthentication();
+			    UserDetails userDetail = (UserDetails) auth.getPrincipal();
+			    UsuarioVO usuario = su.findByUsername(userDetail.getUsername()).get();
+			    comentario.setUsuario(usuario);
+			    sco.save(comentario);
+			return "redirect:/verPublicacion?idpublicacion="+comentario.getPublicacion().getIdpublicacion();
+		}
+		 
+		 @GetMapping("/eliminarcomentario")
+			public String eliminarcomentario(@ModelAttribute("comentario") ComentarioVO comentario,Model modelo) {
+				sco.deleteById(comentario.getIdcomentario());
+				return "redirect:/exito";
+			}
+		 
+		 
+		 @GetMapping("/intercambio")
+			public String intercambio(@RequestParam int idpublicacion, Model modelo) {
+			 PublicacionVO publicacion = sp.findById(idpublicacion).get();
+			 OfertaVO oferta = new OfertaVO();
+			 oferta.setPublicacion(publicacion);
+			 oferta.setUsuario(publicacion.getUsuario());
+				modelo.addAttribute("ofertas", oferta);
+				return "pagos/intercambio";
+			}
+			
+		 @PostMapping("/intercambio")
+		 public String intercambiar(@RequestParam(name = "file", required = false) MultipartFile file, OfertaVO oferta) throws IOException {
+			 	//Llama servicio cloudinary para subir la imagen
+				 try {
+				 Map<?, ?> result = sc.upload(file);
+				 //Establece url de la imagen de cloudinary para mostrarla
+				 oferta.setImagenoferta((String)result.get("url"));
+				 //Si el usuario no pone ninguna imagen
+				 }catch (FileNotFoundException e) {
+				 oferta.setImagenoferta("/images/logo_small.png");
+				 }
+				 //Establece fecha de hoy
+				 oferta.setFechaoferta(LocalDate.now());
+				 //Establece tipo de oferta
+				 oferta.setTipo("Intercambio");
+				 //Establece pago
+				 oferta.setPago("Libro");
+				 //obtener usuario logueado
+				 Authentication auth = SecurityContextHolder
+				            .getContext()
+				            .getAuthentication();
+				    UserDetails userDetail = (UserDetails) auth.getPrincipal();
+				    UsuarioVO usuario = su.findByUsername(userDetail.getUsername()).get();
+				    oferta.setNombreusuario(usuario.getUsername());
+				    oferta.setContacto(usuario.getCorreo());
+				    so.save(oferta);
+				 return "redirect:/exito";
+			 }
+		 
+		 @GetMapping("/compra")
+			public String compra(@RequestParam int idpublicacion, Model modelo) {
+			 PublicacionVO publicacion = sp.findById(idpublicacion).get();
+			 OfertaVO oferta = new OfertaVO();
+			 oferta.setPublicacion(publicacion);
+			 oferta.setUsuario(publicacion.getUsuario());
+				modelo.addAttribute("ofertas", oferta);
+				return "pagos/pago";
+			}
+			
+		 @PostMapping("/compra")
+		 public String comprar(@ModelAttribute OfertaVO oferta) throws IOException {
+				 //Establece una imagen por defecto
+				 oferta.setImagenoferta("/images/logo_small.png");
+				 //Establece fecha de hoy
+				 oferta.setFechaoferta(LocalDate.now());
+				 //Establece tipo de oferta
+				 oferta.setTipo("Compra");
+				 //Establece un titulo
+				 oferta.setTitulo("Compra de libro por "+oferta.getPublicacion().getPrecio()+"€");
+				 //Establece una decripcion
+				 oferta.setDescripcion("Estoy interesado en el libro");
+				 //obtener usuario logueado
+				 Authentication auth = SecurityContextHolder
+				            .getContext()
+				            .getAuthentication();
+				    UserDetails userDetail = (UserDetails) auth.getPrincipal();
+				    UsuarioVO usuario = su.findByUsername(userDetail.getUsername()).get();
+				    oferta.setNombreusuario(usuario.getUsername());
+				    oferta.setContacto(usuario.getCorreo());
+				    so.save(oferta);
+				 return "redirect:/exito";
+			 }
+		 
+		 @GetMapping("/eliminaroferta")
+			public String eliminaroferta(@RequestParam int idoferta,Model modelo) {
+				so.deleteById(idoferta);
 				return "redirect:/exito";
 			}
 }

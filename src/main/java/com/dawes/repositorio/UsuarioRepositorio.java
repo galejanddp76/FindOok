@@ -2,6 +2,7 @@ package com.dawes.repositorio;
 
 import java.util.Optional;
 
+
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
@@ -25,4 +26,14 @@ public interface UsuarioRepositorio extends CrudRepository<UsuarioVO, Integer>{
 	@Transactional
 	@Query("delete from PublicacionVO where usuario=:usuario")
 	void eliminarPublicacionUsuario(UsuarioVO usuario);
+	
+	@Modifying
+	@Transactional
+	@Query("delete from ComentarioVO where usuario=:usuario")
+	void eliminarComentarioUsuario(UsuarioVO usuario);
+	
+	@Modifying
+	@Transactional
+	@Query("delete from OfertaVO where usuario=:usuario")
+	void eliminarOfertaUsuario(UsuarioVO usuario);
 }

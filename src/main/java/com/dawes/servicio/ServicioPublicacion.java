@@ -1,7 +1,5 @@
 package com.dawes.servicio;
 
-
-
 import java.util.List;
 import java.util.Optional;
 
@@ -35,6 +33,8 @@ public interface ServicioPublicacion {
 	List<PublicacionVO> findByTitulo(String titulo);
 	
 	void eliminarComentarioPublicacion(PublicacionVO publicacion);
+	
+	void eliminarOfertaPublicacion(PublicacionVO publicacion);
 	
 	List<PublicacionVO> findByUsuario(UsuarioVO usuario);
 

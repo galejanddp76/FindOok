@@ -1,7 +1,5 @@
 package com.dawes.servicioImpl;
 
-
-
 import java.util.List;
 import java.util.Optional;
 
@@ -78,7 +76,9 @@ public class ServicioPublicacionImpl implements ServicioPublicacion {
 		return pr.findByTitulo(titulo);
 	}
 
-
+	public void eliminarOfertaPublicacion(PublicacionVO publicacion) {
+		pr.eliminarOfertaPublicacion(publicacion);
+	}
 
 	public List<PublicacionVO> findByUsuario(UsuarioVO usuario) {
 		return pr.findByUsuario(usuario);

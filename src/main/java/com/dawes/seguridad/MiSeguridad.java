@@ -36,9 +36,9 @@ public class MiSeguridad extends WebSecurityConfigurerAdapter{
 	
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
-		http.authorizeRequests().antMatchers(HttpMethod.GET, "/insertar", "/editarusuario", "/editarpublicacion","/eliminarpublicacion", "/verPublicacion", "/perfil", "/exito").hasAnyRole("USER","ADMIN");
+		http.authorizeRequests().antMatchers(HttpMethod.GET, "/insertar", "/editarusuario", "/editarpublicacion","/eliminarpublicacion", "/verPublicacion", "/perfil", "/intercambio", "/compra", "/exito", "/ofertas").hasAnyRole("USER","ADMIN");
         http.authorizeRequests().antMatchers(HttpMethod.GET, "/panel", "/eliminarusuario").hasRole("ADMIN");
-        http.authorizeRequests().antMatchers(HttpMethod.POST, "/persistirpublicacion","/editarusuario", "/editarpublicacion").hasAnyRole("USER","ADMIN");
+        http.authorizeRequests().antMatchers(HttpMethod.POST, "/persistirpublicacion","/editarusuario", "/editarpublicacion", "/intercambio").hasAnyRole("USER","ADMIN");
 		http.httpBasic();
 		http.formLogin().loginPage("/login");
 		http.exceptionHandling().accessDeniedPage("/403");

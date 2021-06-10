@@ -34,6 +34,11 @@ public class ControladorPrincipal {
 		return "admin/panel";
 	}
 	
+	 @GetMapping("/ofertas")
+	 public String ofertas() {
+		 return "pagos/ofertas";
+		}
+	
 	@GetMapping("/exito")
 	public String exito() {
 		return "exito";

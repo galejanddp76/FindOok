@@ -1,27 +1,25 @@
 <!DOCTYPE html>
 <html xmlns:th="thymeleaf.org" xmlns:sec="thymeleaf.org">
-
 <head>
-    <meta charset="utf-8">
-    <title>FindOok</title>
+<meta charset="utf-8">
+<title>FindOok</title>
     <link rel="icon" type="image/png" href="/images/logo_small_icon_only.png">
     <link rel="stylesheet" th:href="@{/css/estilos.css}">
-    <link rel="stylesheet" th:href="@{/css/form.css}">
-    <script th:src="@{/js/imagen.js}"></script>
+    <link rel="stylesheet" th:href="@{/css/ofertas.css}">
+    <script th:src="@{/js/ofertas.js}"></script>
 </head>
-
 <body>
-    <header class="header">
+	    <header class="header">
        <nav>
        		<a th:href="@{/index}">
             	<div class="logo">
                 	<img th:src="@{/images/logo_small_icon_only.png}" alt="libro">
                 	<h3>FINDOOK</h3>
             	</div>
-      		</a>
+      		</a>  
             <ul class="navegacion" sec:authorize="hasRole('ROLE_ANONYMOUS')">
                 <li sec:authorize="hasRole('ROLE_ANONYMOUS')"><a th:href="@{/registrarse}">Registrarse</a></li>
-                <li sec:authorize="hasRole('ROLE_ANONYMOUS')"><a th:href="@{/login}">Iniciar Sesion</a></li>
+                <li sec:authorize="hasRole('ROLE_ANONYMOUS')"><a th:href="@{/login}">Iniciar sesion</a></li>
             </ul>
             <ul class="navegacion" sec:authorize="isAuthenticated()">
             	<li sec:authorize="hasRole('ROLE_ADMIN')"><a th:href="@{/panel}">Panel</a></li>
@@ -42,22 +40,7 @@
             </ul>
         </nav>
     </header>
-    <div class="formularioinsertar">
-    <img class="marca" alt="logo" src="/images/logo_small.png">
-    <form th:action="@{/persistirpublicacion}" method="post" th:object="${publicaciones}" enctype="multipart/form-data">
-    	<div class="uploadPreview">
-    		<img id="uploadPreview" src="/images/logo_small_icon_only.png" />
-    		<div class="divFile"><input type="file" name="file" class="inputFile" id="imagenpublicacion" onchange="previewImage();"/>SUBIR IMAGEN</div>
-    	</div>
-        <div><input type="text" name="titulo" id="titulo" placeholder="Titulo" required="required" autocomplete="off"></div>
-        <div><textarea name="descripcion" id="descripcion" placeholder="Descripcion" required="required"></textarea></div>
-        <div><input type="number" name="precio" id="precio" placeholder="Precio" min="1" max="999" required="required" autocomplete="off">
-        </div><div class="botones">
-        <input type="submit" value="Publicar" />
-        <a th:href="@{/index}">Cancelar</a>
-        </div>
-    </form>
-    </div>
+    <div class="intro"><h1>OFERTAS DE INTERCAMBIO Y COMPRA</h1></div>
+	<div class="misOfertas"></div>
 </body>
-
 </html>

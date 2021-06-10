@@ -42,5 +42,9 @@ public interface ServicioUsuario {
 	void eliminarUsuarioRol(UsuarioVO usuario);
 	
 	void eliminarPublicacionUsuario(UsuarioVO usuario);
+	
+	void eliminarComentarioUsuario(UsuarioVO usuario);
+	
+	void eliminarOfertaUsuario(UsuarioVO usuario);
 
 }
