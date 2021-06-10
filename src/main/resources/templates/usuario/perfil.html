@@ -42,7 +42,7 @@
     	<img alt="usuario" src="/images/perfilDefault.png">
 		<div>
     		<h1 th:text="${usuario.username}"></h1>
-			<h2>Cantidad de publicaciones: </h2>
+			<h3 class="numPublicacion">Número de publicaciones:</h3>
 			<h3><a th:href="@{/editarusuario(idusuario=${usuario.idusuario})}">Editar usuario</a></h3>
 		</div>
     </div>

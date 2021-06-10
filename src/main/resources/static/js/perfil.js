@@ -1,5 +1,6 @@
 window.onload = function() {
     var detalle = "";
+    var numPublicacion = 0;
 
 	leerPublicacion();
 	//lee las publicaciones de la base de datos
@@ -9,10 +10,10 @@ window.onload = function() {
         mostrarPublicaciones(publicaciones);
     }
 
-
     //crea las publicaciones
     function mostrarPublicaciones(publicaciones) {
         for (publicacion of publicaciones) {
+            numPublicacion += 1;
             detalle += `
         <article class = "item">
             <div class="titulo">
@@ -32,5 +33,6 @@ window.onload = function() {
     `
         }
         document.querySelector(".misPublicaciones").innerHTML = detalle;
+        document.querySelector(".numPublicacion").innerText += " "+numPublicacion;
     }
 }
