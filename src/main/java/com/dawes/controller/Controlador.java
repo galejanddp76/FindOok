@@ -253,7 +253,7 @@ public class Controlador {
 				 //Establece tipo de oferta
 				 oferta.setTipo("Compra");
 				 //Establece un titulo
-				 oferta.setTitulo("Compra de libro por "+oferta.getPublicacion().getPrecio()+"€");
+				 oferta.setTitulo("Compra de libro");
 				 //Establece una decripcion
 				 oferta.setDescripcion("Estoy interesado en el libro");
 				 //obtener usuario logueado

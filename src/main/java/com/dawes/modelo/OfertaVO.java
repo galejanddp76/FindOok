@@ -3,7 +3,6 @@ package com.dawes.modelo;
 
 import java.time.LocalDate;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -36,10 +35,10 @@ public class OfertaVO {
 	private LocalDate fechaoferta;
 	private String descripcion;
 	private String imagenoferta;
-	@ManyToOne(cascade = CascadeType.REMOVE)
+	@ManyToOne
 	@JoinColumn(name="idusuario")
 	private UsuarioVO usuario;
-	@ManyToOne(cascade = CascadeType.REMOVE)
+	@ManyToOne
 	@JoinColumn(name="idpublicacion")
 	private PublicacionVO publicacion;
 }
