@@ -1,10 +1,10 @@
-function cargarPublicaciones(id) {
+window.onload = function() {
     var detalle = "";
 
 	leerPublicacion();
 	//lee las publicaciones de la base de datos
     async function leerPublicacion() {
-        const response = await fetch('/publicacionesJson/usuario/'+id);
+        const response = await fetch('/publicacionesJson/usuario');
         const publicaciones = await response.json();
         mostrarPublicaciones(publicaciones);
     }
@@ -33,4 +33,4 @@ function cargarPublicaciones(id) {
         }
         document.querySelector(".misPublicaciones").innerHTML = detalle;
     }
- }
+}

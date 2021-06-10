@@ -48,6 +48,7 @@ public class Controlador {
 	
 	@GetMapping("/perfil")
 	public String verperfil(Model modelo) {
+		try {
 		//obtener usuario logueado
 		 Authentication auth = SecurityContextHolder
 		            .getContext()
@@ -56,7 +57,11 @@ public class Controlador {
 		    UsuarioVO usuario = su.findByUsername(userDetail.getUsername()).get();
 		    int idusuario = usuario.getIdusuario();
 		    modelo.addAttribute("usuario", su.findById(idusuario).get());
-		return "usuario/perfil";
+		    return "usuario/perfil";
+		    }catch (Exception e) {
+				return "logout";
+			}
+		
 	}
 	
 	@GetMapping("/insertar")

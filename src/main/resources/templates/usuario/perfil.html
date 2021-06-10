@@ -7,7 +7,7 @@
 <link rel="stylesheet" th:href="@{/css/perfil.css}">
 <script th:src="@{/js/perfil.js}"></script>
 </head>
-<body th:onload="cargarPublicaciones([[${usuario.idusuario}]])">
+<body>
  <header class="header">
        <nav>
        		<a th:href="@{/index}">
@@ -15,10 +15,7 @@
                 	<img th:src="@{/images/logo_small_icon_only.png}" alt="libro">
                 	<h3>FINDOOK</h3>
             	</div>
-      		</a>
-      		<form class="buscador" onkeyup="buscarInfo()">  
-				<input type="search" id="buscar" placeholder="Buscar..." autocomplete="off">  
-			</form>  
+      		</a> 
             <ul class="navegacion" sec:authorize="hasRole('ROLE_ANONYMOUS')">
                 <li sec:authorize="hasRole('ROLE_ANONYMOUS')"><a th:href="@{/registrarse}">Registrarse</a></li>
                 <li sec:authorize="hasRole('ROLE_ANONYMOUS')"><a th:href="@{/login}">Iniciar Sesion</a></li>
@@ -49,6 +46,8 @@
 			<h3><a th:href="@{/editarusuario(idusuario=${usuario.idusuario})}">Editar usuario</a></h3>
 		</div>
     </div>
+    <h1>MIS PUBLICACIONES</h1>
 	<div class="misPublicaciones"></div>
+	
 </body>
 </html>

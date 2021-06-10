@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.dawes.modelo.PublicacionVO;
+import com.dawes.modelo.UsuarioVO;
 import com.dawes.repositorio.PublicacionRepositorio;
 import com.dawes.servicio.ServicioPublicacion;
 
@@ -79,8 +80,8 @@ public class ServicioPublicacionImpl implements ServicioPublicacion {
 
 
 
-	public List<PublicacionVO> findByUsuario(int idusuario) {
-		return pr.findByUsuario(idusuario);
+	public List<PublicacionVO> findByUsuario(UsuarioVO usuario) {
+		return pr.findByUsuario(usuario);
 	}
 
 	public void eliminarComentarioPublicacion(PublicacionVO publicacion) {

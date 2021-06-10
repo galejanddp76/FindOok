@@ -111,6 +111,11 @@ ul{
   	display:block;
 }
 
+.intro{
+	color: orange;
+	padding: 40px;
+}
+
 .publicaciones {
     width: 100%;
     display: flex;

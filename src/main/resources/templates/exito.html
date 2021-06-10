@@ -2,21 +2,26 @@
 <html xmlns:th="thymeleaf.org" xmlns:sec="thymeleaf.org">
 <head>
 <meta charset="utf-8">
-<link rel="stylesheet" th:href="@{/css/estilos.css}">
 <title>Exito</title>
+<link rel="stylesheet" th:href="@{/css/estilos.css}">
+<link rel="stylesheet" th:href="@{/css/exito.css}">
 </head>
 <body>
 <header class="header">
-        <nav>
-            <div class="logo">
-                <img th:src="@{/images/logo_small_icon_only.png}" alt="libro">
-                <h3>FINDOOK</h3>
-            </div>
+       <nav>
+       		<a th:href="@{/index}">
+            	<div class="logo">
+                	<img th:src="@{/images/logo_small_icon_only.png}" alt="libro">
+                	<h3>FINDOOK</h3>
+            	</div>
+      		</a>  
             <ul class="navegacion" sec:authorize="hasRole('ROLE_ANONYMOUS')">
-                <li><a th:href="@{/registrarse}">Registrarse</a></li>
-                <li><a th:href="@{/login}">Iniciar Sesion</a></li>
+                <li sec:authorize="hasRole('ROLE_ANONYMOUS')"><a th:href="@{/registrarse}">Registrarse</a></li>
+                <li sec:authorize="hasRole('ROLE_ANONYMOUS')"><a th:href="@{/login}">Iniciar Sesion</a></li>
             </ul>
             <ul class="navegacion" sec:authorize="isAuthenticated()">
+            	<li sec:authorize="hasRole('ROLE_ADMIN')"><a th:href="@{/panel}">Panel</a></li>
+            	<li><a th:href="@{/insertar}">Publicar</a></li>
                 <li>
                 	<a href="#">
                 		<div class="usuario">
@@ -32,11 +37,11 @@
             </ul>
         </nav>
     </header>
-    <div>
+    <div class="exito">
     	<img alt="exito" src="/images/exito.png">
-    	<h1>EXITO AL HACER LA OPERACION</h1>
-    	<a th:href="@{/index}">Volver al indice</a>
-    	<a th:href="@{/index}">Volver al indice</a>
+    	<h1> LA OPERACION SE COMPLETO CON EXITO</h1>
+    	<a sec:authorize="hasRole('ROLE_ADMIN')" th:href="@{/panel}">Volver al panel</a>
+    	<a th:href="@{/index}">Volver al inicio</a>
     </div>
 </body>
 </html>

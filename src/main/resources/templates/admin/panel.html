@@ -15,10 +15,7 @@
                 	<img th:src="@{/images/logo_small_icon_only.png}" alt="libro">
                 	<h3>FINDOOK</h3>
             	</div>
-      		</a>
-      		<form class="buscador" onkeyup="buscarInfo()">  
-				<input type="search" id="buscar" placeholder="Buscar..." autocomplete="off">  
-			</form>  
+      		</a> 
             <ul class="navegacion" sec:authorize="hasRole('ROLE_ANONYMOUS')">
                 <li sec:authorize="hasRole('ROLE_ANONYMOUS')"><a th:href="@{/registrarse}">Registrarse</a></li>
                 <li sec:authorize="hasRole('ROLE_ANONYMOUS')"><a th:href="@{/login}">Iniciar Sesion</a></li>

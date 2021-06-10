@@ -5,6 +5,9 @@ import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
@@ -51,9 +54,14 @@ public class ControladorRest {
 			 return ResponseEntity.ok(lista);
 	 }
 	 
-	 @GetMapping("/publicacionesJson/usuario/{idusuario}")
-	 public ResponseEntity<?> publicacionUsuario(@PathVariable int idusuario) {
-		 List<PublicacionVO> lista=sp.findByUsuario(idusuario);
+	 @GetMapping("/publicacionesJson/usuario")
+	 public ResponseEntity<?> publicacionUsuario() {
+		 Authentication auth = SecurityContextHolder
+		            .getContext()
+		            .getAuthentication();
+		    UserDetails userDetail = (UserDetails) auth.getPrincipal();
+		    UsuarioVO usuario = su.findByUsername(userDetail.getUsername()).get();
+		 List<PublicacionVO> lista=sp.findByUsuario(usuario);
 		 if (lista.isEmpty()) 
 			 return ResponseEntity.notFound().build();
 		 else 

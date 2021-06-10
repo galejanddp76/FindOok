@@ -48,6 +48,7 @@ public class UsuarioVO implements UserDetails {
 	@DateTimeFormat(pattern = "yyy-MM-dd")
 	private LocalDate fecharegistro;
 	
+	@Size(min = 4, message = "La contraseña debe tener al menos 4 carácteres")
 	private String password;
 	
 	@Transient

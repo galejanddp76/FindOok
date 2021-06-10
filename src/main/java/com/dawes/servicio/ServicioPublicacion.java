@@ -1,12 +1,12 @@
 package com.dawes.servicio;
 
-import java.time.LocalDate;
 
 
 import java.util.List;
 import java.util.Optional;
 
 import com.dawes.modelo.PublicacionVO;
+import com.dawes.modelo.UsuarioVO;
 
 public interface ServicioPublicacion {
 
@@ -36,6 +36,6 @@ public interface ServicioPublicacion {
 	
 	void eliminarComentarioPublicacion(PublicacionVO publicacion);
 	
-	List<PublicacionVO> findByUsuario(int idusuario);
+	List<PublicacionVO> findByUsuario(UsuarioVO usuario);
 
 }

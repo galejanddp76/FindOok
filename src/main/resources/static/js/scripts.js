@@ -57,7 +57,7 @@ window.onload = function() {
  	const filtrar = (publicaciones) =>{
  	for (publicacion of publicaciones) {
  		let titulo = publicacion.titulo.toLowerCase();
- 		if(titulo.indexOf(texto) !== -1){
+ 		if(titulo.indexOf(texto) != -1){
  			publicado.innerHTML += `
         	<article class = "item">
             	<div class="titulo">

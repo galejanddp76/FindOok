@@ -10,7 +10,6 @@
 	text-align: center;	
 }
 
-
 .formulario img{
 	width: 150px;
 	opacity: 0.6;
@@ -136,4 +135,8 @@ form input[type=submit]{
 input[type=submit]:hover, .divFile:hover{
 	background-color: #ff4800;
 	cursor: pointer;
+}
+
+.formulario h1{
+	color: orange;
 }

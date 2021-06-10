@@ -34,6 +34,11 @@ public class ControladorPrincipal {
 		return "admin/panel";
 	}
 	
+	@GetMapping("/exito")
+	public String exito() {
+		return "exito";
+	}
+	
 	@GetMapping("/login")
 	public String login() {
 		return"login";

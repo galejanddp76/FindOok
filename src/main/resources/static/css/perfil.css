@@ -21,6 +21,7 @@
 
 .banner div h1,h2,h3{
 	padding: 10px;
+	color: white;
 }
 
 .banner div>h3>a{
@@ -30,9 +31,15 @@
 
 .misPublicaciones {
     width: 100%;
+    padding: 10px;
     display: flex;
     flex-flow: row wrap;
     justify-content: flex-start;
     align-items: stretch;
     margin: auto ;
+}
+
+h1{
+	color: orange;
+	padding: 30px;
 }
