@@ -108,8 +108,6 @@ ul{
 	width: 80%;
 	margin: auto;
 	margin-top: 20px;
-	background-color: #d9ebf3;
-	border: 2px solid orange;
 	padding: 20px;
 	border-radius: 10px;
 }
@@ -125,8 +123,6 @@ ul{
 .detalles{
 	width: 75%;
 	padding: 10px;
-	background-color: white;
-	border: 2px solid orange;
 	border-radius: 10px;
 }
 h2{
@@ -254,7 +250,7 @@ input[type=submit]:hover{
 	width: 55%;
 	border: 2px solid orange;
 	border-radius: 10px;
-	background-color: white;
+	background-color: #d9ebf3;
 	font-size: 15px;
 	margin: 20px;
 }
