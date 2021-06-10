@@ -105,7 +105,7 @@ ul{
 .contenedor{
 	display: flex;
 	flex-flow: row wrap;
-	width: 90%;
+	width: 70%;
 	margin: auto;
 	margin-top: 20px;
 	padding: 20px;
@@ -154,7 +154,7 @@ h2{
 	flex-flow: column wrap;
 	justify-content: center;
 	align-items: center;
-	width: 18%;
+	width: 20%;
 	padding: 15px;
 }
 
@@ -168,8 +168,8 @@ h2{
 	justify-content: flex-start;
 	align-items: center;
 	width: 100%;
-	margin-top: 25px;
-	font-size: 18px;
+	margin-top: 20px;
+	font-size: 16px;
 	
 }
 
@@ -249,7 +249,6 @@ input[type=submit]:hover{
 	width: 55%;
 	border: 2px solid orange;
 	border-radius: 10px;
-	background-color: #d9ebf3;
 	font-size: 15px;
 	margin: 20px;
 }
