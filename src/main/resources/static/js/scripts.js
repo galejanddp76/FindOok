@@ -69,7 +69,7 @@ window.onload = function() {
                 	<span><strong>Usuario:</strong> ${publicacion.usuario.username}</span>
                 	<span><strong>Precio:</strong> ${publicacion.precio}€</span>
             	</div>
-            	<a href="/verPublicacion" class="boton">Ver mas</a>
+            	<a href="/verPublicacion?idpublicacion=${publicacion.idpublicacion}" class="boton">Ver mas</a>
         	</article>`;
  		}
  	}
