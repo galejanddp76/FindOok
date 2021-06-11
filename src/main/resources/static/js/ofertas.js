@@ -21,8 +21,9 @@ window.onload = function() {
             <div><span><strong>Descripcion:</strong> ${oferta.descripcion}</span></div>
             <div><span><strong>Usuario:</strong> ${oferta.nombreusuario}</span></div>
             <div><span><strong>Correo:</strong> ${oferta.contacto}</span></div>
+            <div><span><strong>Publicacion:</strong> ${oferta.publicacion.titulo} ${oferta.publicacion.precio}€</span></div>
             <div><span><strong>Fecha:</strong> ${oferta.fechaoferta}</span></div>
-            </div><span><strong>Publicacion:</strong> ${oferta.publicacion.titulo}</span></div>
+            </div>
         </div> `;
         }
         document.querySelector(".misOfertas").innerHTML = detalle;
