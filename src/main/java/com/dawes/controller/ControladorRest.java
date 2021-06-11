@@ -86,6 +86,15 @@ public class ControladorRest {
 		 else return ResponseEntity.notFound().build();
 	 }
 	 
+		@GetMapping("/comentariosJson")
+		 public ResponseEntity<?> todasLosComentarios(){
+			 List<ComentarioVO> lista=(List<ComentarioVO>) sc.findAll();
+			 if (lista.isEmpty()) 
+				 return ResponseEntity.notFound().build();
+			 else 
+				 return ResponseEntity.ok(lista);
+		 }
+	 
 	 @GetMapping("/comentariosJson/id/{idpublicacion}")
 	 public ResponseEntity<?> todosLosComentariosDeUnaPublicacion(@PathVariable int idpublicacion){
 		 List<ComentarioVO> comentarios=sc.findByPublicacion(sp.findById(idpublicacion).get());

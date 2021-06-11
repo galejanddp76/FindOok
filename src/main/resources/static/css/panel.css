@@ -40,7 +40,7 @@ table{
 	border-spacing: 0;
 }
 
-.tablapublicaciones{
+.tablapublicaciones, .tablacomentarios{
 	width: 100%;
 	display: none;
 }
