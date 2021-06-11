@@ -9,7 +9,7 @@ window.onload = function() {
         mostrarOfertas(ofertas);
     }
 
-    //crea las publicaciones
+    //crea las ofertas
     function mostrarOfertas(ofertas) {
         for (oferta of ofertas) {
             detalle += `
@@ -22,7 +22,7 @@ window.onload = function() {
             <div><span><strong>Usuario:</strong> ${oferta.nombreusuario}</span></div>
             <div><span><strong>Correo:</strong> ${oferta.contacto}</span></div>
             <div><span><strong>Fecha:</strong> ${oferta.fechaoferta}</span></div>
-            </div>
+            </div><span><strong>Publicacion:</strong> ${oferta.publicacion.titulo}</span></div>
         </div> `;
         }
         document.querySelector(".misOfertas").innerHTML = detalle;
