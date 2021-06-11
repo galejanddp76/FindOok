@@ -16,7 +16,8 @@ window.onload = function() {
         <div class = "oferta">
         <img src="${oferta.imagenoferta}" alt="{$oferta.titulo}">
         	<div class = "info">
-            <div class="asunto"> <a href="/eliminaroferta?idoferta=${oferta.idoferta}" class="boton">x</a><span><strong>${oferta.titulo}</strong></span></div>
+            <div class="asunto"> <a href="/eliminaroferta?idoferta=${oferta.idoferta}" class="boton">x</a><span><strong>${oferta.tipo}</strong></span></div>
+            <div><span><strong>Titulo:</strong> ${oferta.titulo}</span></div>
             <div><span><strong>Descripcion:</strong> ${oferta.descripcion}</span></div>
             <div><span><strong>Usuario:</strong> ${oferta.nombreusuario}</span></div>
             <div><span><strong>Correo:</strong> ${oferta.contacto}</span></div>
