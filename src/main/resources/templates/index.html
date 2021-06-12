@@ -24,7 +24,7 @@
 			</form>  
             <ul class="navegacion" sec:authorize="hasRole('ROLE_ANONYMOUS')">
                 <li sec:authorize="hasRole('ROLE_ANONYMOUS')"><a th:href="@{/registrarse}">Registrarse</a></li>
-                <li sec:authorize="hasRole('ROLE_ANONYMOUS')"><a th:href="@{/login}">Iniciar sesion</a></li>
+                <li sec:authorize="hasRole('ROLE_ANONYMOUS')"><a th:href="@{/login}">Iniciar Sesion</a></li>
             </ul>
             <ul class="navegacion" sec:authorize="isAuthenticated()">
             	<li sec:authorize="hasRole('ROLE_ADMIN')"><a th:href="@{/panel}">Panel</a></li>
